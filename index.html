@@ -291,6 +291,90 @@
         color: var(--gray);
       }
 
+      /* Achievements Section */
+      .achievements {
+        background-color: var(--light-green-bg);
+        padding: 6rem 0;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        margin-bottom: 4rem;
+        text-align: center;
+      }
+
+      .stat-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(16, 185, 129, 0.05);
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-label {
+        color: var(--gray);
+      }
+
+      /* Testimonials */
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+
+      .testimonial-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(16, 185, 129, 0.05);
+      }
+
+      .testimonial-quote {
+        color: var(--primary);
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .testimonial-text {
+        color: var(--gray);
+        margin-bottom: 1.5rem;
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+      }
+
+      .author-image {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        margin-right: 1rem;
+      }
+
+      .author-info {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .author-name {
+        font-weight: 600;
+        color: var(--dark);
+      }
+
+      .author-title {
+        color: var(--gray);
+        font-size: 0.9rem;
+      }
+
       /* About Section */
       .about {
         padding: 6rem 0;
@@ -591,6 +675,9 @@
         .footer-grid {
           grid-template-columns: 1fr 1fr;
         }
+        .footer-links {
+          display: block;
+        }
       }
 
       /* Add these styles in your existing CSS, just before the @media queries */
@@ -626,6 +713,40 @@
         .mobile-menu-btn {
           display: block;
         }
+
+        .footer-links {
+          display: block;
+        }
+
+        .achievements {
+          padding: 4rem 0;
+        }
+
+        .stats-grid {
+          grid-template-columns: repeat(1, 1fr);
+          gap: 1rem;
+        }
+
+        .testimonials-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .stat-card {
+          padding: 1.5rem;
+        }
+
+        .stat-number {
+          font-size: 2rem;
+        }
+
+        .testimonial-card {
+          padding: 1.5rem;
+        }
+
+        .testimonial-text {
+          font-size: 0.95rem;
+        }
       }
     </style>
   </head>
@@ -646,7 +767,7 @@
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
-          
+
           <button class="mobile-menu-btn">☰</button>
         </nav>
       </div>
@@ -782,6 +903,108 @@
         </div>
       </div>
     </section>
+
+    <!-- Add this section after the Services section and before the About section -->
+    <section class="achievements">
+      <div class="container">
+        <div class="section-header">
+          <h2>Our Impact</h2>
+          <p>
+            Delivering excellence through innovation and commitment to our
+            clients' success
+          </p>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">20+</div>
+            <div class="stat-label">Projects Completed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">10+</div>
+            <div class="stat-label">AI Solutions Deployed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">98%</div>
+            <div class="stat-label">Client Satisfaction</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">10+</div>
+            <div class="stat-label">Countries Served</div>
+          </div>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="section-header">
+          <h2>What Our Clients Say</h2>
+          <p>Real feedback from organizations we've helped transform</p>
+        </div>
+
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="testimonial-quote">❝</div>
+            <p class="testimonial-text">
+              "CydexCode's AI solution dramatically improved our customer
+              service efficiency by 60%. Their team's expertise and dedication
+              to our success were exceptional."
+            </p>
+            <div class="testimonial-author">
+              <img
+                src="sara.jfif"
+                alt="Sarah Chen"
+                class="author-image"
+              />
+              <div class="author-info">
+                <div class="author-name">Sarah Chen</div>
+                <div class="author-title">CTO, TechVision Global</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-quote">❝</div>
+            <p class="testimonial-text">
+              "The machine learning models developed by CydexCode helped us
+              reduce operational costs by 40% while improving accuracy. They're
+              true innovators in the field."
+            </p>
+            <div class="testimonial-author">
+              <img
+                src="michel.jpg"
+                alt="Michael Roberts"
+                class="author-image"
+              />
+              <div class="author-info">
+                <div class="author-name">Michael Roberts</div>
+                <div class="author-title">CEO, DataSmart Solutions</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-quote">❝</div>
+            <p class="testimonial-text">
+              "Working with CydexCode transformed our development pipeline.
+              Their DevOps expertise helped us achieve 3x faster deployment
+              cycles with enhanced reliability."
+            </p>
+            <div class="testimonial-author">
+              <img
+                src="amanda.png"
+                alt="Amanda Torres"
+                class="author-image"
+              />
+              <div class="author-info">
+                <div class="author-name">Amanda Torres</div>
+                <div class="author-title">Head of Engineering, CloudScale</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="contact">
       <div class="container">
@@ -820,7 +1043,7 @@
                 <div class="contact-icon">📱</div>
                 <div>
                   <strong>Phone</strong><br />
-                  +61 4 9126 3412
+                  +61 4 9126 3412w
                 </div>
               </div>
             </div>
@@ -875,35 +1098,58 @@
               transformative innovations.
             </p>
             <div class="social-links">
-                <a href="https://www.linkedin.com/company/cydexcode" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
-                <a href="https://www.youtube.com/@cydexcode" target="_blank" class="social-link"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.tiktok.com/@cydexcode" target="_blank" class="social-link"><i class="fab fa-tiktok"></i></a>
-                <a href="https://medium.com/@cydexcode" target="_blank" class="social-link"><i class="fab fa-medium"></i></a>
-                <a href="https://www.facebook.com/@cydexcode" target="_blank" class="social-link"><i class="fab fa-facebook"></i></a>
-<!--                 <a href="https://t.me/cydexcode" target="_blank" class="social-link"><i class="fab fa-telegram"></i></a> -->
+              <a
+                href="https://www.linkedin.com/company/cydexcode"
+                target="_blank"
+                class="social-link"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+              <a
+                href="https://www.youtube.com/@cydexcode"
+                target="_blank"
+                class="social-link"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a
+                href="https://www.tiktok.com/@cydexcode"
+                target="_blank"
+                class="social-link"
+                ><i class="fab fa-tiktok"></i
+              ></a>
+              <a
+                href="https://medium.com/@cydexcode"
+                target="_blank"
+                class="social-link"
+                ><i class="fab fa-medium"></i
+              ></a>
+              <a
+                href="https://www.facebook.com/@cydexcode"
+                target="_blank"
+                class="social-link"
+                ><i class="fab fa-facebook"></i
+              ></a>
             </div>
-            
           </div>
 
           <div class="footer-links">
             <h3>Services</h3>
             <ul>
-              <li><a href="#">AI & Machine Learning</a></li>
-              <li><a href="#">Software Development</a></li>
-              <li><a href="#">Cloud Computing</a></li>
-              <li><a href="#">DevOps & Automation</a></li>
-              <li><a href="#">Data Analytics</a></li>
+              <li><a href="#services">AI & Machine Learning</a></li>
+              <li><a href="#services">Software Development</a></li>
+              <li><a href="#services">Cloud Computing</a></li>
+              <li><a href="#services">DevOps & Automation</a></li>
+              <li><a href="#services">Data Analytics</a></li>
             </ul>
           </div>
 
           <div class="footer-links">
             <h3>Company</h3>
             <ul>
-              <li><a href="#">About Us</a></li>
+              <li><a href="#about">About Us</a></li>
               <li><a href="#">Careers</a></li>
-              <li><a href="#">Blog</a></li>
+              <li><a href="https://medium.com/@cydexcode">Blog</a></li>
               <li><a href="#">Case Studies</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="#contact">Contact</a></li>
             </ul>
           </div>
 
@@ -926,7 +1172,6 @@
     </footer>
 
     <script>
-     
       // Replace the existing mobile menu JavaScript with this updated version:
       // Mobile Menu Toggle
       const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
