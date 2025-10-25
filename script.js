@@ -64,7 +64,6 @@
         function closeMenu() {
             if (navLinks) {
                 navLinks.classList.remove('active');
-                navLinks.style.display = '';
             }
             if (mobileMenuBtn) mobileMenuBtn.textContent = '☰';
             menuOpen = false;
@@ -72,8 +71,10 @@
 
         function openMenu() {
             if (navLinks) {
-                navLinks.classList.add('active');
                 navLinks.style.display = 'flex';
+                // Force reflow to trigger transition
+                navLinks.offsetHeight;
+                navLinks.classList.add('active');
             }
             if (mobileMenuBtn) mobileMenuBtn.textContent = '✕';
             menuOpen = true;
@@ -99,6 +100,16 @@
                 closeMenu();
             }
         });
+
+        // Close menu when clicking on any nav link
+        if (navLinks) {
+            const navLinkItems = navLinks.querySelectorAll('a');
+            navLinkItems.forEach((link) => {
+                link.addEventListener('click', () => {
+                    closeMenu();
+                });
+            });
+        }
 
         // Smooth scrolling for same-page anchors
         document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -200,6 +211,14 @@
 
             // --- SPA-like client-side navigation (load .html into <main> without full page reload) ---
             function loadPage(fetchUrl, addToHistory = true){
+                // Add fade-out and slide-out transition to main content
+                const mainEl = document.querySelector('main');
+                if (mainEl) {
+                    mainEl.style.opacity = '0';
+                    mainEl.style.transform = 'translateX(30px)';
+                    mainEl.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                }
+
                 // ensure URL is relative or absolute; fetch will resolve relative paths correctly
                 fetch(fetchUrl, {cache: 'no-cache'})
                     .then(resp => {
@@ -207,24 +226,33 @@
                         return resp.text();
                     })
                     .then(html => {
-                        const parser = new DOMParser();
-                        const doc = parser.parseFromString(html, 'text/html');
-                        const newMain = doc.querySelector('main');
-                        if (newMain) {
-                            const mainEl = document.querySelector('main');
-                            if (mainEl) mainEl.innerHTML = newMain.innerHTML;
-                        }
-                        // do NOT change document.title here — keep the original tab name
-                        if (addToHistory) history.pushState({path: fetchUrl}, '', fetchUrl);
-                        // run/restore behaviors for the newly injected content
-                        highlightActiveNav();
-                        addRevealObserver();
-                        // close mobile menu if open (small screens)
-                        if (navLinks && navLinks.classList.contains('active')){
-                            navLinks.classList.remove('active');
-                            if (mobileMenuBtn) mobileMenuBtn.textContent = '☰';
-                        }
-                        window.scrollTo({top:0,behavior:'instant'});
+                        // Wait for fade-out to complete
+                        setTimeout(() => {
+                            const parser = new DOMParser();
+                            const doc = parser.parseFromString(html, 'text/html');
+                            const newMain = doc.querySelector('main');
+                            if (newMain && mainEl) {
+                                mainEl.innerHTML = newMain.innerHTML;
+                                // Start new content from left position
+                                mainEl.style.transform = 'translateX(-30px)';
+                                mainEl.style.opacity = '0';
+                                // Slide in from left to right and fade in
+                                setTimeout(() => {
+                                    mainEl.style.opacity = '1';
+                                    mainEl.style.transform = 'translateX(0)';
+                                }, 10);
+                            }
+                            // do NOT change document.title here — keep the original tab name
+                            if (addToHistory) history.pushState({path: fetchUrl}, '', fetchUrl);
+                            // run/restore behaviors for the newly injected content
+                            highlightActiveNav();
+                            addRevealObserver();
+                            // close mobile menu if open (small screens) with smooth transition
+                            if (navLinks && navLinks.classList.contains('active')){
+                                closeMenu();
+                            }
+                            window.scrollTo({top:0,behavior:'smooth'});
+                        }, 300);
                     })
                     .catch(err => {
                         // fallback to full navigation if fetch fails
