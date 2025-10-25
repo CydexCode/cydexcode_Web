@@ -3,7 +3,18 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<script>
+			(function() {
+				const path = location.pathname;
+				if (path.match(/\.html$/)) {
+					const clean = path.replace(/\.html$/, '');
+					const url = clean === '/index' ? '/' : clean;
+					history.replaceState(null, '', url + location.search + location.hash);
+				}
+			})();
+		</script>
 		<title>Services — CydexCode</title>
+		<link rel="canonical" href="https://www.cydexcode.com/services" />
 		<link rel="icon" type="image/png" href="favicon-16x16.png" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 		<link rel="stylesheet" href="style.css" />
@@ -12,16 +23,16 @@
 		<header>
 			<div class="container">
 				<nav>
-					<a href="index.html" class="logo">
+					<a href="/" class="logo">
 						<img src="Di.png" alt="CydexCode" />
 						<span>CydexCode</span>
 					</a>
 					<ul class="nav-links">
-						<li><a href="index.html">Home</a></li>
-						<li><a href="services.html">Services</a></li>
-						<li><a href="marketing.html">Marketing</a></li>
-						<li><a href="about.html">About</a></li>
-						<li><a href="contact.html">Contact</a></li>
+						<li><a href="/">Home</a></li>
+						<li><a href="/services">Services</a></li>
+						<li><a href="/marketing">Marketing</a></li>
+						<li><a href="/about">About</a></li>
+						<li><a href="/contact">Contact</a></li>
 						<!-- Blog link removed -->
 					</ul>
 					<button class="mobile-menu-btn">☰</button>
@@ -113,7 +124,7 @@
 			<div class="container">
 				<div class="footer-grid">
 					<div class="footer-branding">
-						<a href="index.html" class="logo">
+						<a href="/" class="logo">
 							<div class="logo">
 								<span>CydexCode</span>
 							</div>
@@ -135,22 +146,22 @@
 					<div class="footer-links">
 						<h3>Services</h3>
 						<ul>
-							<li><a href="services.html">AI & Machine Learning</a></li>
-							<li><a href="services.html">Software Development</a></li>
-							<li><a href="services.html">Cloud Computing</a></li>
-							<li><a href="services.html">DevOps & Automation</a></li>
-							<li><a href="services.html">Data Analytics</a></li>
+							<li><a href="/services">AI & Machine Learning</a></li>
+							<li><a href="/services">Software Development</a></li>
+							<li><a href="/services">Cloud Computing</a></li>
+							<li><a href="/services">DevOps & Automation</a></li>
+							<li><a href="/services">Data Analytics</a></li>
 						</ul>
 					</div>
 
 					<div class="footer-links">
 						<h3>Company</h3>
 						<ul>
-							<li><a href="about.html">About Us</a></li>
+							<li><a href="/about">About Us</a></li>
 							<li><a href="#">Careers</a></li>
 							<!-- Blog removed -->
 							<li><a href="#">Case Studies</a></li>
-							<li><a href="contact.html">Contact</a></li>
+							<li><a href="/contact">Contact</a></li>
 						</ul>
 					</div>
 
