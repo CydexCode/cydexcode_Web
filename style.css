@@ -250,11 +250,13 @@ footer{background:var(--footer-bg);color:var(--footer-color);padding:3rem 0}
     /* reduce header height on narrow screens to free vertical space */
     :root{--header-h:64px}
     /* Mobile navigation: full-width drop-down, scrollable if long with slide down/up animation */
-    .nav-links{position:fixed;top:var(--header-h);left:0;right:0;background:var(--surface);flex-direction:column;padding:0.5rem 0;box-shadow:0 10px 30px rgba(2,6,23,0.08);z-index:1001;max-height:calc(100vh - var(--header-h));overflow:auto;opacity:0;visibility:hidden;transform:translateY(-100%);transition:opacity 0.4s ease, transform 0.4s ease, visibility 0.4s}
+    .nav-links{position:fixed;top:var(--header-h);left:0;right:0;background:rgba(255,255,255,0.98);flex-direction:column;padding:0.5rem 0;box-shadow:0 10px 30px rgba(0,0,0,0.2);z-index:1001;max-height:calc(100vh - var(--header-h));overflow:auto;opacity:0;visibility:hidden;transform:translateY(-100%);transition:opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;border-bottom:2px solid var(--primary)}
+    html.dark .nav-links{background:rgba(15,23,42,0.98);box-shadow:0 10px 30px rgba(0,0,0,0.5)}
     .nav-links.active{display:flex;opacity:1;visibility:visible;transform:translateY(0)}
     .nav-links li{width:100%}
-    .nav-links a{display:block;padding:0.65rem 1rem;border-radius:6px;color:var(--dark)}
-    .nav-links a:hover{background:rgba(16,185,129,0.03)}
+    .nav-links a{display:block;padding:0.65rem 1rem;border-radius:6px;color:var(--text);font-weight:600;transition:all 0.2s ease;border:2px solid transparent}
+    .nav-links a:hover{background:rgba(16,185,129,0.1);border-color:rgba(16,185,129,0.3)}
+    .nav-links a.active{background:var(--primary);color:#ffffff !important;font-weight:700;box-shadow:0 2px 8px rgba(16,185,129,0.3);border:2px solid rgba(16,185,129,0.8)}
     .mobile-menu-btn{display:block;z-index:1002}
 
     /* Make hero CTAs stack on small screens to avoid overlap */
