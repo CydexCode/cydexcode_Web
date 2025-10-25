@@ -13,7 +13,7 @@
             const root = document.documentElement;
             const stored = localStorage.getItem('theme');
             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const initial = stored === 'dark' || stored === 'light' ? stored : (prefersDark ? 'dark' : 'light');
+            const initial = stored === 'dark' || stored === 'light' ? stored : 'dark';
 
             function applyTheme(mode){
                 if(mode === 'dark') root.classList.add('dark');

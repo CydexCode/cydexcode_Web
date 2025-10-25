@@ -119,21 +119,23 @@ body > main, .hero {padding-top:var(--header-h)}
 
 /* Hero */
 .hero{padding-bottom:3rem;background:var(--hero-bg)}
-.hero-content{max-width:680px}
-.hero h1{font-size:2.5rem;line-height:1.05;margin-bottom:1rem}
-.hero p{color:var(--muted);font-size:1.05rem;margin-bottom:1.25rem}
+.hero-content{max-width:720px}
+.hero h1{font-size:3.5rem;line-height:1.1;margin-bottom:1.5rem;font-weight:800;transition:all 0.4s ease;white-space:nowrap}
+.hero p{color:var(--muted);font-size:1.3rem;margin-bottom:1.5rem;line-height:1.6;transition:all 0.4s ease}
 
 /* Improve CTA visibility in hero across themes */
-.hero .cta-button{box-shadow:0 12px 30px rgba(16,185,129,0.12)}
-.hero .secondary-button{box-shadow:none}
+.hero .cta-button{box-shadow:0 12px 30px rgba(16,185,129,0.12);padding:1rem 2.5rem;font-size:1.1rem;transition:all 0.3s ease}
+.hero .secondary-button{box-shadow:none;padding:1rem 2.5rem;font-size:1.1rem;transition:all 0.3s ease}
 html.dark .hero .cta-button{box-shadow:0 10px 26px rgba(0,0,0,0.45)}
 html.dark .hero .secondary-button{background:transparent;border-color:rgba(255,255,255,0.08);color:var(--white)}
-.hero-buttons{display:flex;gap:1rem;flex-wrap:wrap}
+.hero-buttons{display:flex;gap:1.5rem;flex-wrap:wrap}
 .cta-button{background:var(--primary);color:#fff;padding:0.75rem 1.25rem;border-radius:8px;text-decoration:none;font-weight:700}
 .secondary-button{background:var(--surface);color:var(--primary);padding:0.7rem 1.25rem;border-radius:8px;border:1px solid rgba(16,185,129,0.12);text-decoration:none}
 
 /* Sections */
 section{padding:3.5rem 0}
+main > section:first-child{padding-top:0;margin-top:-2rem}
+.services{padding-top:0;margin-top:-10px}
 .section-header{text-align:center;margin-bottom:2rem}
 .section-header h2{font-size:1.75rem;color:var(--primary-dark);margin-bottom:0.5rem}
 .section-header p{color:var(--muted);max-width:720px;margin:0 auto}
@@ -144,8 +146,70 @@ section{padding:3.5rem 0}
 .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
 .service-card{background:var(--card-bg);padding:1.25rem;border-radius:12px;box-shadow:0 10px 30px rgba(16,185,129,0.06)}
 .service-icon{width:56px;height:56px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:0.75rem;background:linear-gradient(135deg, rgba(16,185,129,0.06), rgba(74,222,128,0.06));color:var(--primary)}
+.service-card-img{width:100%;height:100%;object-fit:cover;border-radius:10px}
 .service-card h3{margin:0 0 0.5rem 0;color:var(--primary-dark)}
 .service-card p{color:var(--muted)}
+
+/* Large attractive service cards with prominent images */
+.services-grid-large{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2rem;justify-items:center;align-items:start}
+.service-card-large{
+    background:var(--card-bg);
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 12px 40px rgba(16,185,129,0.08);
+    display:flex;
+    flex-direction:column;
+    text-decoration:none;
+    color:inherit;
+    width:100%;
+    max-width:450px;
+    height:420px;
+}
+.service-card-image{
+    width:100%;
+    height:220px;
+    overflow:hidden;
+    position:relative;
+}
+.service-card-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform 400ms cubic-bezier(.2,.9,.3,1);
+}
+.service-card-large:hover .service-card-image img{
+    transform:scale(1.08);
+}
+.service-card-content{
+    padding:1.75rem;
+    flex:1;
+}
+.service-card-content h3{
+    margin:0 0 0.75rem 0;
+    color:var(--primary-dark);
+    font-size:1.35rem;
+    font-weight:700;
+}
+.service-card-content p{
+    color:var(--muted);
+    margin:0;
+    line-height:1.6;
+}
+.service-card-large:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 50px rgba(16,185,129,0.12);
+}
+
+@media (max-width:768px){
+    .services-grid-large{grid-template-columns:1fr;gap:1.5rem}
+    .service-card-image{height:200px}
+}
+
+/* Full-width service card variant */
+.service-card-full{
+    max-width:100%;
+    grid-column:1/-1;
+}
 
 .marketing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
 .marketing-card{background:var(--card-bg);padding:1rem;border-radius:10px;box-shadow:0 8px 18px rgba(16,185,129,0.05);color:var(--text)}
