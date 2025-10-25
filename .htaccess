@@ -1,0 +1,32 @@
+# .htaccess to support clean URLs and redirect canonical .html URLs to clean paths
+# Place this file at the webroot (same directory as index.html)
+
+# Turn off MultiViews (can interfere with clean-url handling)
+Options -MultiViews
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1) Redirect requests like /page.html -> /page  (301 permanent)
+  # Use THE_REQUEST to avoid rewrite loops (only redirect when the original client request contained .html)
+  RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[?\s] [NC]
+  RewriteRule ^ /%1 [R=301,L]
+
+  # 2) If the request is an existing file or directory, serve it directly
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # 3) Internally rewrite clean URL /page -> /page.html if that .html file exists
+  # This allows /about to serve about.html without changing the visible URL
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^(.+?)/?$ $1.html [L]
+
+</IfModule>
+
+# Optional: security headers (uncomment if you want to enable)
+# <IfModule mod_headers.c>
+#   Header set X-Frame-Options "SAMEORIGIN"
+#   Header set X-Content-Type-Options "nosniff"
+#   Header set Referrer-Policy "no-referrer-when-downgrade"
+# </IfModule>
