@@ -144,8 +144,8 @@ main > section:first-child{padding-top:0;margin-top:-2rem}
 .muted{color:var(--muted)}
 
 .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
-.service-card{background:var(--card-bg);padding:1.25rem;border-radius:12px;box-shadow:0 10px 30px rgba(16,185,129,0.06)}
-.service-icon{width:56px;height:56px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:0.75rem;background:linear-gradient(135deg, rgba(16,185,129,0.06), rgba(74,222,128,0.06));color:var(--primary)}
+.service-card{background:var(--card-bg);padding:1.25rem;border-radius:12px;box-shadow:0 10px 30px rgba(16,185,129,0.06);text-align:center}
+.service-icon{width:56px;height:56px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:0.75rem;background:linear-gradient(135deg, rgba(16,185,129,0.06), rgba(74,222,128,0.06));color:var(--primary);margin-left:auto;margin-right:auto}
 .service-card-img{width:100%;height:100%;object-fit:cover;border-radius:10px}
 .service-card h3{margin:0 0 0.5rem 0;color:var(--primary-dark)}
 .service-card p{color:var(--muted)}
