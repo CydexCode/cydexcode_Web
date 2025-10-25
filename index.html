@@ -12,761 +12,26 @@
 
     <title>CydexCode</title>
 
-    <style>
-      :root {
-        --primary: #10b981;
-        --primary-dark: #059669;
-        --secondary: #4ade80;
-        --dark: #1e293b;
-        --light: #f0fdf4;
-        --gray: #64748b;
-        --light-gray: #dcfce7;
-        --light-green-bg: #ecfdf5;
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
-          Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      }
-
-      body {
-        color: var(--dark);
-        background-color: var(--light);
-        line-height: 1.6;
-      }
-
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 2rem;
-      }
-
-      /* Navigation */
-      header {
-        position: fixed;
-        width: 100%;
-        background-color: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 1px 3px rgba(16, 185, 129, 0.1);
-        z-index: 1000;
-      }
-
-      nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1.25rem 0;
-      }
-
-      .logo {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--primary);
-        text-decoration: none; /* Ensures no underline for links */
-      }
-
-      .logo a {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-        color: inherit; /* Keeps the text color */
-        text-decoration: none;
-      }
-
-      .logo img {
-        width: 85px; /* Adjust size as needed */
-        height: 60px;
-        border-radius: 10%; /* Makes the logo circular */
-        object-fit: cover; /* Ensures it fills the circular frame properly */
-        margin-right: 10px;
-        cursor: pointer;
-        border: 2px solid #fff; /* Optional: Adds a white border for a polished look */
-      }
-
-      .logo span {
-        font-size: 20px;
-        font-weight: bold;
-        cursor: pointer;
-      }
-
-      .logo span {
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .logo-icon {
-        width: 2rem;
-        height: 2rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        color: white;
-        border-radius: 8px;
-      }
-
-      .nav-links {
-        display: flex;
-        gap: 2rem;
-        list-style: none;
-      }
-
-      .nav-links a {
-        text-decoration: none;
-        color: var(--dark);
-        font-weight: 500;
-        transition: color 0.3s;
-      }
-
-      .nav-links a:hover {
-        color: var(--primary);
-      }
-
-      .mobile-menu-btn {
-        display: none;
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        color: var(--dark);
-        cursor: pointer;
-      }
-
-      .cta-button {
-        display: inline-block;
-        background-color: var(--primary);
-        color: white;
-        padding: 0.75rem 1.5rem;
-        border-radius: 8px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: background-color 0.3s;
-      }
-
-      .cta-button:hover {
-        background-color: var(--primary-dark);
-      }
-
-      /* Hero Section */
-      .hero {
-        padding: 10rem 0 5rem;
-        position: relative;
-        overflow: hidden;
-        background-color: var(--light-green-bg);
-      }
-
-      .hero::before {
-        content: "";
-        position: absolute;
-        top: -10%;
-        right: -10%;
-        width: 500px;
-        height: 500px;
-        background: linear-gradient(
-          135deg,
-          rgba(74, 222, 128, 0.15),
-          rgba(16, 185, 129, 0.15)
-        );
-        border-radius: 50%;
-        z-index: 0;
-      }
-
-      .hero-content {
-        max-width: 600px;
-        position: relative;
-        z-index: 1;
-      }
-
-      .hero h1 {
-        font-size: 3.5rem;
-        line-height: 1.2;
-        margin-bottom: 1.5rem;
-        font-weight: 800;
-      }
-
-      .hero p {
-        font-size: 1.25rem;
-        color: var(--gray);
-        margin-bottom: 2.5rem;
-      }
-
-      .hero-buttons {
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
-      }
-
-      .secondary-button {
-        display: inline-block;
-        background-color: white;
-        color: var(--primary);
-        border: 1px solid var(--light-gray);
-        padding: 0.75rem 1.5rem;
-        border-radius: 8px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.3s;
-      }
-
-      .secondary-button:hover {
-        border-color: var(--primary);
-        background-color: rgba(16, 185, 129, 0.05);
-      }
-
-      /* Services Section */
-      .services {
-        padding: 6rem 0;
-        background-color: white;
-      }
-
-      .section-header {
-        text-align: center;
-        margin-bottom: 4rem;
-      }
-
-      .section-header h2 {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-        font-weight: 700;
-        color: var(--primary-dark);
-      }
-
-      .section-header p {
-        color: var(--gray);
-        max-width: 700px;
-        margin: 0 auto;
-      }
-
-      .services-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-      }
-
-      .service-card {
-        background-color: var(--light);
-        border-radius: 12px;
-        padding: 2rem;
-        box-shadow: 0 4px 6px rgba(16, 185, 129, 0.05);
-        transition: transform 0.3s, box-shadow 0.3s;
-      }
-
-      .service-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(16, 185, 129, 0.1);
-      }
-
-      .service-icon {
-        background: linear-gradient(
-          135deg,
-          rgba(16, 185, 129, 0.1),
-          rgba(74, 222, 128, 0.1)
-        );
-        width: 4rem;
-        height: 4rem;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 1.5rem;
-        color: var(--primary);
-        font-size: 1.5rem;
-      }
-
-      .service-card h3 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-        font-weight: 600;
-        color: var(--primary-dark);
-      }
-
-      .service-card p {
-        color: var(--gray);
-      }
-
-      /* Achievements Section */
-      .achievements {
-        background-color: var(--light-green-bg);
-        padding: 6rem 0;
-      }
-
-      .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 2rem;
-        margin-bottom: 4rem;
-        text-align: center;
-      }
-
-      .stat-card {
-        background: white;
-        padding: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(16, 185, 129, 0.05);
-      }
-
-      .stat-number {
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: var(--primary);
-        margin-bottom: 0.5rem;
-      }
-
-      .stat-label {
-        color: var(--gray);
-      }
-
-      /* Testimonials */
-      .testimonials-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
-      }
-
-      .testimonial-card {
-        background: white;
-        padding: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(16, 185, 129, 0.05);
-      }
-
-      .testimonial-quote {
-        color: var(--primary);
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-      }
-
-      .testimonial-text {
-        color: var(--gray);
-        margin-bottom: 1.5rem;
-      }
-
-      .testimonial-author {
-        display: flex;
-        align-items: center;
-      }
-
-      .author-image {
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        margin-right: 1rem;
-      }
-
-      .author-info {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .author-name {
-        font-weight: 600;
-        color: var(--dark);
-      }
-
-      .author-title {
-        color: var(--gray);
-        font-size: 0.9rem;
-      }
-
-      /* About Section */
-      .about {
-        padding: 6rem 0;
-        background-color: var(--light-green-bg);
-      }
-
-      .about-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-        align-items: center;
-      }
-
-      .about-content h2 {
-        font-size: 2.5rem;
-        margin-bottom: 1.5rem;
-        font-weight: 700;
-        color: var(--primary-dark);
-      }
-
-      .about-content p {
-        color: var(--gray);
-        margin-bottom: 2rem;
-      }
-
-      .commitment-card {
-        background-color: white;
-        border-radius: 12px;
-        padding: 1.5rem;
-        margin-bottom: 1rem;
-        box-shadow: 0 4px 6px rgba(16, 185, 129, 0.05);
-        border-left: 4px solid var(--primary);
-      }
-
-      .commitment-card h3 {
-        font-size: 1.25rem;
-        margin-bottom: 0.5rem;
-        font-weight: 600;
-        color: var(--primary-dark);
-      }
-
-      .commitment-card p {
-        color: var(--gray);
-        margin-bottom: 1rem;
-        font-size: 0.9rem;
-      }
-
-      .tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-      }
-
-      .tag {
-        background-color: rgba(16, 185, 129, 0.1);
-        color: var(--primary);
-        padding: 0.25rem 0.75rem;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        font-weight: 500;
-      }
-
-      .about-image {
-        position: relative;
-      }
-
-      .about-image img {
-        width: 100%;
-        border-radius: 12px;
-        box-shadow: 0 20px 40px rgba(16, 185, 129, 0.1);
-      }
-
-      .about-image::before {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border: 2px dashed var(--primary);
-        border-radius: 12px;
-        top: 20px;
-        left: -20px;
-        z-index: -1;
-      }
-
-      /* Contact Section */
-      .contact {
-        padding: 6rem 0;
-        background-color: white;
-      }
-
-      .contact-flex {
-        display: flex;
-        gap: 4rem;
-      }
-
-      .contact-info {
-        flex: 1;
-      }
-
-      .contact-info h2 {
-        font-size: 2.5rem;
-        margin-bottom: 1.5rem;
-        font-weight: 700;
-        color: var(--primary-dark);
-      }
-
-      .contact-info p {
-        color: var(--gray);
-        margin-bottom: 2rem;
-      }
-
-      .contact-details {
-        margin-bottom: 2rem;
-      }
-
-      .contact-item {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin-bottom: 1rem;
-      }
-
-      .contact-icon {
-        width: 2.5rem;
-        height: 2.5rem;
-        background-color: rgba(16, 185, 129, 0.1);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--primary);
-      }
-
-      .contact-form {
-        flex: 1;
-        background-color: var(--light);
-        border-radius: 12px;
-        padding: 2rem;
-        box-shadow: 0 4px 20px rgba(16, 185, 129, 0.08);
-      }
-
-      .form-group {
-        margin-bottom: 1.5rem;
-      }
-
-      .form-group label {
-        display: block;
-        margin-bottom: 0.5rem;
-        font-weight: 500;
-        color: var(--primary-dark);
-      }
-
-      .form-control {
-        width: 100%;
-        padding: 0.75rem 1rem;
-        border: 1px solid var(--light-gray);
-        border-radius: 8px;
-        font-size: 1rem;
-        transition: border-color 0.3s;
-      }
-
-      .form-control:focus {
-        outline: none;
-        border-color: var(--primary);
-      }
-
-      textarea.form-control {
-        resize: vertical;
-        min-height: 120px;
-      }
-
-      .submit-btn {
-        background-color: var(--primary);
-        color: white;
-        border: none;
-        padding: 0.75rem 1.5rem;
-        border-radius: 8px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background-color 0.3s;
-      }
-
-      .submit-btn:hover {
-        background-color: var(--primary-dark);
-      }
-
-      /* Footer */
-      footer {
-        background-color: var(--dark);
-        color: white;
-        padding: 4rem 0 2rem;
-      }
-
-      .footer-grid {
-        display: grid;
-        grid-template-columns: 2fr 1fr 1fr 1fr;
-        gap: 2rem;
-      }
-
-      .footer-branding .logo {
-        color: white;
-        margin-bottom: 1rem;
-      }
-
-      .footer-branding p {
-        color: #94a3b8;
-        margin-bottom: 1.5rem;
-      }
-
-      .social-links {
-        display: flex;
-        gap: 1rem;
-      }
-
-      .social-link {
-        width: 2.5rem;
-        height: 2.5rem;
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        transition: background-color 0.3s;
-      }
-
-      .social-link:hover {
-        background-color: var(--primary);
-      }
-
-      .footer-links h3 {
-        font-size: 1.25rem;
-        margin-bottom: 1.5rem;
-        font-weight: 600;
-        color: var(--secondary);
-      }
-
-      .footer-links ul {
-        list-style: none;
-      }
-
-      .footer-links li {
-        margin-bottom: 0.75rem;
-      }
-
-      .footer-links a {
-        color: #94a3b8;
-        text-decoration: none;
-        transition: color 0.3s;
-      }
-
-      .footer-links a:hover {
-        color: white;
-      }
-
-      .copyright {
-        text-align: center;
-        padding-top: 2rem;
-        margin-top: 2rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        color: #94a3b8;
-        font-size: 0.9rem;
-      }
-
-      .social-links {
-        display: flex;
-        gap: 10px;
-      }
-      .social-link {
-        font-size: 24px;
-
-        text-decoration: none;
-        transition: color 0.3s;
-      }
-      .social-link:hover {
-        color: #0073b1; /* Change color on hover (adjust per platform) */
-      }
-
-      /* Responsive Styles */
-      @media (max-width: 992px) {
-        .hero h1 {
-          font-size: 2.5rem;
-        }
-
-        .about-grid {
-          grid-template-columns: 1fr;
-          gap: 2rem;
-        }
-
-        .about-image {
-          order: -1;
-        }
-
-        .contact-flex {
-          flex-direction: column;
-        }
-
-        .footer-grid {
-          grid-template-columns: 1fr 1fr;
-        }
-        .footer-links {
-          display: block;
-        }
-      }
-
-      /* Add these styles in your existing CSS, just before the @media queries */
-
-      @media (max-width: 768px) {
-        .nav-links {
-          display: none;
-          position: absolute;
-          top: 100%;
-          left: 0;
-          right: 0;
-          background-color: white;
-          flex-direction: column;
-          padding: 1rem 0;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-links.active {
-          display: flex;
-        }
-
-        .nav-links li {
-          width: 100%;
-          text-align: center;
-          padding: 0.75rem 0;
-        }
-
-        .nav-links a {
-          display: block;
-          padding: 0.5rem 2rem;
-        }
-
-        .mobile-menu-btn {
-          display: block;
-        }
-
-        .footer-links {
-          display: block;
-        }
-
-        .achievements {
-          padding: 4rem 0;
-        }
-
-        .stats-grid {
-          grid-template-columns: repeat(1, 1fr);
-          gap: 1rem;
-        }
-
-        .testimonials-grid {
-          grid-template-columns: 1fr;
-          gap: 1.5rem;
-        }
-
-        .stat-card {
-          padding: 1.5rem;
-        }
-
-        .stat-number {
-          font-size: 2rem;
-        }
-
-        .testimonial-card {
-          padding: 1.5rem;
-        }
-
-        .testimonial-text {
-          font-size: 0.95rem;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <!-- Header -->
     <header>
       <div class="container">
         <nav>
-          <a href="#home" class="logo">
+          <a href="index.html" class="logo">
             <div class="logo">
               <img src="Di.png" alt="CydexCode Logo" />
               <span>CydexCode</span>
             </div>
           </a>
           <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="https://medium.com/@cydexcode">Blog</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="marketing.html">Marketing</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <!-- <li><a href="https://medium.com/@cydexcode">Blog</a></li> -->
           </ul>
 
           <button class="mobile-menu-btn">☰</button>
@@ -777,318 +42,82 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
       <div class="container">
-        <div class="hero-content">
-          <h1>AI-powered Software Solutions</h1>
+        <!-- decorative animated layer (visual only) -->
+        <div class="hero-decor" aria-hidden="true"></div>
+        <div class="hero-content reveal" data-animate-delay="0">
+          <h1>AI-powered Software Solutions & Marketing</h1>
           <p>
             Revolutionizing the digital landscape with cutting-edge Artificial
             Intelligence, Machine Learning, and Software Development solutions
             tailored to your needs.
           </p>
           <div class="hero-buttons">
-            <a href="#services" class="cta-button">Explore Services</a>
-            <a href="#contact" class="secondary-button">Contact Us</a>
+            <a href="services.html" class="cta-button">Explore Services</a>
+            <a href="contact.html" class="secondary-button">Contact Us</a>
           </div>
         </div>
       </div>
     </section>
+    <main>
+      <section class="services">
+        <div class="container">
+          <div class="section-header">
+            <h2>What we do</h2>
+            <p>AI, software engineering, cloud infrastructure and growth marketing — built for outcomes.</p>
+          </div>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-      <div class="container">
-        <div class="section-header">
-          <h2>Our Services</h2>
-          <p>
-            We empower organizations with intelligent automation, data-driven
-            insights, and scalable software architectures, ensuring efficiency,
-            accuracy, and growth.
-          </p>
-        </div>
-        <div class="services-grid">
-          <div class="service-card">
-            <div class="service-icon">🤖</div>
-            <h3>AI & Machine Learning</h3>
-            <p>
-              Leverage the power of artificial intelligence and machine learning
-              to gain valuable insights from your data and automate complex
-              processes.
-            </p>
+          <div class="services-grid">
+            <a class="service-card reveal" href="services.html">
+              <div class="service-icon">🤖</div>
+              <h3>AI & Machine Learning</h3>
+              <p>Models, MLOps and production ML that solves business problems.</p>
+            </a>
+
+            <a class="service-card reveal" href="services.html">
+              <div class="service-icon">💻</div>
+              <h3>Software Development</h3>
+              <p>Product engineering and APIs for scalable systems.</p>
+            </a>
+
+            <a class="service-card reveal" href="marketing.html">
+              <div class="service-icon">📣</div>
+              <h3>Marketing & Growth</h3>
+              <p>Data-driven campaigns, content and performance strategies.</p>
+            </a>
+
+            <a class="service-card reveal" href="services.html">
+              <div class="service-icon">☁️</div>
+              <h3>Cloud & DevOps</h3>
+              <p>Secure, scalable infrastructure and delivery automation.</p>
+            </a>
+
+            <a class="service-card reveal" href="about.html">
+              <div class="service-icon">🏢</div>
+              <h3>About Us</h3>
+              <p>Meet the team and our mission to deliver pragmatic AI.</p>
+            </a>
+
+            <a class="service-card reveal" href="contact.html">
+              <div class="service-icon">✉️</div>
+              <h3>Contact</h3>
+              <p>Get a proposal, consulting or a discovery session.</p>
+            </a>
           </div>
-          <div class="service-card">
-            <div class="service-icon">💻</div>
-            <h3>Software Development</h3>
-            <p>
-              Custom software solutions built with modern technologies to meet
-              your unique business requirements and drive digital
-              transformation.
-            </p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">☁️</div>
-            <h3>Cloud Computing</h3>
-            <p>
-              Scalable cloud solutions using AWS, Azure, and other platforms to
-              optimize your IT infrastructure and reduce operational costs.
-            </p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">🔄</div>
-            <h3>DevOps & Automation</h3>
-            <p>
-              Streamline your development pipeline with Docker, Kubernetes,
-              Jenkins, and other DevOps tools for faster and more reliable
-              deployments.
-            </p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">📊</div>
-            <h3>Data Analytics</h3>
-            <p>
-              Transform raw data into actionable business insights through
-              advanced analytics, visualization, and reporting solutions.
-            </p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">🌐</div>
-            <h3>Web & Mobile Development</h3>
-            <p>
-              Create responsive web applications and mobile solutions using
-              React, .NET, and other cutting-edge frameworks.
-            </p>
+
+          <div style="text-align:center;margin-top:2rem;" class="reveal">
+            <a href="contact.html" class="cta-button">Request a Consultation</a>
+            <a href="services.html" class="secondary-button">Explore Services</a>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-      <div class="container">
-        <div class="about-grid">
-          <div class="about-content">
-            <h2>About CydexCode</h2>
-            <p>
-              At CydexCode, we are at the forefront of technological innovation,
-              specializing in AI-driven solutions and cutting-edge software
-              development. Our team of experienced engineers and developers
-              works tirelessly to deliver exceptional results that transform
-              businesses and drive digital success.
-            </p>
-
-            <div class="commitment-card">
-              <h3>Innovation & Excellence</h3>
-              <p>
-                We consistently push the boundaries of what's possible in
-                technology, combining artificial intelligence with robust
-                software solutions to create powerful, scalable systems that
-                drive business growth.
-              </p>
-            </div>
-
-            <div class="commitment-card">
-              <h3>Client-Centric Approach</h3>
-              <p>
-                Every solution we develop is tailored to meet specific client
-                needs. We pride ourselves on delivering personalized service and
-                maintaining long-term partnerships with our clients across
-                various industries.
-              </p>
-              <div class="tags">
-                <span class="tag">Custom Solutions</span>
-                <span class="tag">Industry Expertise</span>
-                <span class="tag">Technical Excellence</span>
-              </div>
-            </div>
-          </div>
-          <div class="about-image">
-            <img src="04.jpg" alt="CydexCode Technology Solutions" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Add this section after the Services section and before the About section -->
-    <section class="achievements">
-      <div class="container">
-        <div class="section-header">
-          <h2>Our Impact</h2>
-          <p>
-            Delivering excellence through innovation and commitment to our
-            clients' success
-          </p>
-        </div>
-
-        <!-- Stats Grid -->
-        <div class="stats-grid">
-          <div class="stat-card">
-            <div class="stat-number">20+</div>
-            <div class="stat-label">Projects Completed</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">10+</div>
-            <div class="stat-label">AI Solutions Deployed</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">98%</div>
-            <div class="stat-label">Client Satisfaction</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">10+</div>
-            <div class="stat-label">Countries Served</div>
-          </div>
-        </div>
-
-        <!-- Testimonials -->
-        <div class="section-header">
-          <h2>What Our Clients Say</h2>
-          <p>Real feedback from organizations we've helped transform</p>
-        </div>
-
-        <div class="testimonials-grid">
-          <div class="testimonial-card">
-            <div class="testimonial-quote">❝</div>
-            <p class="testimonial-text">
-              "CydexCode's AI solution dramatically improved our customer
-              service efficiency by 60%. Their team's expertise and dedication
-              to our success were exceptional."
-            </p>
-            <div class="testimonial-author">
-              <img
-                src="sara.jfif"
-                alt="Sarah Chen"
-                class="author-image"
-              />
-              <div class="author-info">
-                <div class="author-name">Sarah Chen</div>
-                <div class="author-title">CTO, TechVision Global</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="testimonial-card">
-            <div class="testimonial-quote">❝</div>
-            <p class="testimonial-text">
-              "The machine learning models developed by CydexCode helped us
-              reduce operational costs by 40% while improving accuracy. They're
-              true innovators in the field."
-            </p>
-            <div class="testimonial-author">
-              <img
-                src="michel.jpg"
-                alt="Michael Roberts"
-                class="author-image"
-              />
-              <div class="author-info">
-                <div class="author-name">Michael Roberts</div>
-                <div class="author-title">CEO, DataSmart Solutions</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="testimonial-card">
-            <div class="testimonial-quote">❝</div>
-            <p class="testimonial-text">
-              "Working with CydexCode transformed our development pipeline.
-              Their DevOps expertise helped us achieve 3x faster deployment
-              cycles with enhanced reliability."
-            </p>
-            <div class="testimonial-author">
-              <img
-                src="amanda.png"
-                alt="Amanda Torres"
-                class="author-image"
-              />
-              <div class="author-info">
-                <div class="author-name">Amanda Torres</div>
-                <div class="author-title">Head of Engineering, CloudScale</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-      <div class="container">
-        <div class="section-header">
-          <h2>Get In Touch</h2>
-          <p>
-            Let's discuss how CydexCode can help transform your business with
-            AI-powered software solutions.
-          </p>
-        </div>
-        <div class="contact-flex">
-          <div class="contact-info">
-            <h2>Contact Information</h2>
-            <p>
-              Have questions or ready to start your digital transformation
-              journey? Reach out to our team for a consultation.
-            </p>
-
-            <div class="contact-details">
-              <div class="contact-item">
-                <div class="contact-icon">📍</div>
-                <div>
-                  <strong>Headquarters</strong><br />
-                  5/17, Scott Street, Redhill, QLD 4058<br />
-                  Brisbane, Australia
-                </div>
-              </div>
-              <div class="contact-item">
-                <div class="contact-icon">📧</div>
-                <div>
-                  <strong>Email</strong><br />
-                 contact@cydexcode.com
-                </div>
-              </div>
-              <div class="contact-item">
-                <div class="contact-icon">📱</div>
-                <div>
-                  <strong>Phone</strong><br />
-                  +61 4 9126 3412
-                </div>
-              </div>
-            </div>
-
-            <div class="tags">
-              <span class="tag">#AI</span>
-              <span class="tag">#MachineLearning</span>
-              <span class="tag">#SoftwareSolutions</span>
-              <span class="tag">#CloudComputing</span>
-              <span class="tag">#DevOps</span>
-            </div>
-          </div>
-
-<!--           <div class="contact-form">
-            <form id="contactForm">
-              <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" class="form-control" required />
-              </div>
-              <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" class="form-control" required />
-              </div>
-              <div class="form-group">
-                <label for="company">Company</label>
-                <input type="text" id="company" class="form-control" />
-              </div>
-              <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" class="form-control" required></textarea>
-              </div>
-              <button type="submit" class="submit-btn">Send Message</button>
-            </form> -->
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
     <!-- Footer -->
     <footer>
       <div class="container">
         <div class="footer-grid">
           <div class="footer-branding">
-            <a href="#logo" class="logo">
+            <a href="index.html" class="logo">
               <div class="logo">
                 <span>CydexCode</span>
               </div>
@@ -1135,22 +164,22 @@
           <div class="footer-links">
             <h3>Services</h3>
             <ul>
-              <li><a href="#services">AI & Machine Learning</a></li>
-              <li><a href="#services">Software Development</a></li>
-              <li><a href="#services">Cloud Computing</a></li>
-              <li><a href="#services">DevOps & Automation</a></li>
-              <li><a href="#services">Data Analytics</a></li>
+              <li><a href="services.html">AI & Machine Learning</a></li>
+              <li><a href="services.html">Software Development</a></li>
+              <li><a href="services.html">Cloud Computing</a></li>
+              <li><a href="services.html">DevOps & Automation</a></li>
+              <li><a href="services.html">Data Analytics</a></li>
             </ul>
           </div>
 
           <div class="footer-links">
             <h3>Company</h3>
             <ul>
-              <li><a href="#about">About Us</a></li>
+              <li><a href="about.html">About Us</a></li>
               <li><a href="#">Careers</a></li>
-              <li><a href="https://medium.com/@cydexcode">Blog</a></li>
+              <!-- Blog removed -->
               <li><a href="#">Case Studies</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a href="contact.html">Contact</a></li>
             </ul>
           </div>
 
@@ -1167,160 +196,10 @@
         </div>
 
         <div class="copyright">
-          <p>&copy; 2020 CydexCode. All rights reserved.</p>
+          <p>&copy; 2025 CydexCode. All rights reserved.</p>
         </div>
       </div>
     </footer>
-
-    <script>
-      // Replace the existing mobile menu JavaScript with this updated version:
-      // Mobile Menu Toggle
-      const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
-      const navLinks = document.querySelector(".nav-links");
-      let isMenuOpen = false;
-
-      mobileMenuBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        isMenuOpen = !isMenuOpen;
-
-        if (isMenuOpen) {
-          navLinks.style.display = "flex";
-          mobileMenuBtn.textContent = "✕";
-        } else {
-          navLinks.style.display = "none";
-          mobileMenuBtn.textContent = "☰";
-        }
-      });
-
-      // Close menu when clicking outside
-      document.addEventListener("click", (e) => {
-        if (
-          isMenuOpen &&
-          !navLinks.contains(e.target) &&
-          !mobileMenuBtn.contains(e.target)
-        ) {
-          navLinks.style.display = "none";
-          mobileMenuBtn.textContent = "☰";
-          isMenuOpen = false;
-        }
-      });
-
-      // Enhanced Smooth Scrolling for Anchor Links
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-
-          const targetId = this.getAttribute("href");
-          if (targetId === "#") return;
-
-          const targetElement = document.querySelector(targetId);
-          if (targetElement) {
-            // Add a small delay to ensure proper scrolling
-            setTimeout(() => {
-              const headerOffset = 80;
-              const elementPosition = targetElement.getBoundingClientRect().top;
-              const offsetPosition =
-                elementPosition + window.pageYOffset - headerOffset;
-
-              window.scrollTo({
-                top: offsetPosition,
-                behavior: "smooth",
-              });
-            }, 100);
-
-            // Close mobile menu if open
-            if (window.innerWidth < 768) {
-              navLinks.style.display = "none";
-              mobileMenuBtn.textContent = "☰";
-              isMenuOpen = false;
-            }
-          }
-        });
-      });
-
-      // Enhanced scroll spy functionality
-      let scrollTimeout;
-      window.addEventListener("scroll", function () {
-        clearTimeout(scrollTimeout);
-
-        scrollTimeout = setTimeout(() => {
-          const sections = document.querySelectorAll("section");
-          const navLinks = document.querySelectorAll(".nav-links a");
-
-          let current = "";
-
-          sections.forEach((section) => {
-            const sectionTop = section.offsetTop - 100;
-            const sectionHeight = section.clientHeight;
-            if (
-              pageYOffset >= sectionTop &&
-              pageYOffset < sectionTop + sectionHeight
-            ) {
-              current = section.getAttribute("id");
-            }
-          });
-
-          navLinks.forEach((link) => {
-            link.classList.remove("active");
-            if (link.getAttribute("href") === `#${current}`) {
-              link.style.color = "var(--primary)";
-            } else {
-              link.style.color = "var(--dark)";
-            }
-          });
-        }, 50);
-      });
-
-      // Form Submission Handler
-      const contactForm = document.getElementById("contactForm");
-
-      contactForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        const formData = {
-          name: document.getElementById("name").value,
-          email: document.getElementById("email").value,
-          company: document.getElementById("company").value,
-          message: document.getElementById("message").value,
-        };
-
-        // Display form submission confirmation
-        contactForm.innerHTML = `
-                <div style="text-align: center; padding: 2rem 0;">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
-                    <h3 style="margin-bottom: 1rem; color: var(--primary-dark);">Message Sent Successfully!</h3>
-                    <p>Thank you for reaching out, ${formData.name}. Our team will contact you shortly.</p>
-                </div>
-            `;
-
-        // In a real implementation, you would send this data to your server
-        console.log("Form submitted:", formData);
-      });
-
-      // Highlight active nav link on scroll
-      window.addEventListener("scroll", function () {
-        const sections = document.querySelectorAll("section");
-        const navLinks = document.querySelectorAll(".nav-links a");
-
-        let current = "";
-
-        sections.forEach((section) => {
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.clientHeight;
-          if (pageYOffset >= sectionTop - 150) {
-            current = section.getAttribute("id");
-          }
-        });
-
-        navLinks.forEach((link) => {
-          link.classList.remove("active");
-          if (link.getAttribute("href") === `#${current}`) {
-            link.style.color = "var(--primary)";
-          } else {
-            link.style.color = "var(--dark)";
-          }
-        });
-      });
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
