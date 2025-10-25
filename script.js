@@ -243,7 +243,13 @@
                                 }, 10);
                             }
                             // do NOT change document.title here — keep the original tab name
-                            if (addToHistory) history.pushState({path: fetchUrl}, '', fetchUrl);
+                            // Remove .html extension from URL
+                            let cleanUrl = fetchUrl.replace(/\.html$/i, '');
+                            // Handle index -> root path
+                            if (cleanUrl === 'index' || cleanUrl === '/index') {
+                                cleanUrl = '/';
+                            }
+                            if (addToHistory) history.pushState({path: fetchUrl}, '', cleanUrl);
                             // run/restore behaviors for the newly injected content
                             highlightActiveNav();
                             addRevealObserver();
@@ -288,7 +294,13 @@
 
             // handle back/forward navigation
             window.addEventListener('popstate', (e) => {
-                const path = location.pathname.split('/').pop() || 'index.html';
+                let path = location.pathname.split('/').pop() || 'index';
+                // Add .html extension back for loading if needed
+                if (path === '' || path === '/') {
+                    path = 'index.html';
+                } else if (!path.endsWith('.html')) {
+                    path = path + '.html';
+                }
                 loadPage(path, false);
             });
     });
