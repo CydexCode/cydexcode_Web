@@ -3,17 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script>
-      (function() {
-        const path = location.pathname;
-        if (path.match(/\.html$/)) {
-          const clean = path.replace(/\.html$/, '');
-          const url = clean === '/index' ? '/' : clean;
-          history.replaceState(null, '', url + location.search + location.hash);
-        }
-      })();
-    </script>
-    <link rel="icon" type="image/png" href="favicon-16x16.png" />
+    <!-- removed automatic .html URL removal to ensure pages remain reloadable at their .html paths -->
+    <link rel="icon" type="image/png" href="D2icon.jpg" />
     <!-- For PNG -->
     <link
       rel="stylesheet"
@@ -31,20 +22,30 @@
     <header>
       <div class="container">
         <nav>
-          <a href="/" class="logo">
+          <a href="index.html" class="logo">
             <div class="logo">
-              <img src="Di.png" alt="CydexCode Logo" />
+              <img src="D2icon.jpg" alt="CydexCode Logo" />
               <span>CydexCode</span>
             </div>
           </a>
           <ul class="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/services">Services</a></li>
-            <li><a href="/marketing">Marketing</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="marketing.html">Marketing</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
             <!-- <li><a href="https://medium.com/@cydexcode">Blog</a></li> -->
           </ul>
+
+          <!-- Theme switcher: Light / Dark buttons -->
+          <div class="theme-switcher" aria-hidden="false">
+            <button class="theme-btn light" aria-label="Light mode" title="Light mode">
+              <i class="fa-solid fa-sun"></i>
+            </button>
+            <button class="theme-btn dark" aria-label="Dark mode" title="Dark mode">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+          </div>
 
           <button class="mobile-menu-btn">☰</button>
         </nav>
@@ -64,8 +65,8 @@
             tailored to your needs.
           </p>
           <div class="hero-buttons">
-            <a href="/services" class="cta-button">Explore Services</a>
-            <a href="/contact" class="secondary-button">Contact Us</a>
+            <a href="services.html" class="cta-button">Explore Services</a>
+            <a href="contact.html" class="secondary-button">Contact Us</a>
           </div>
         </div>
       </div>
@@ -79,37 +80,37 @@
           </div>
 
           <div class="services-grid">
-            <a class="service-card reveal" href="/services">
+            <a class="service-card reveal" href="services.html">
               <div class="service-icon">🤖</div>
               <h3>AI & Machine Learning</h3>
               <p>Models, MLOps and production ML that solves business problems.</p>
             </a>
 
-            <a class="service-card reveal" href="/services">
+            <a class="service-card reveal" href="services.html">
               <div class="service-icon">💻</div>
               <h3>Software Development</h3>
               <p>Product engineering and APIs for scalable systems.</p>
             </a>
 
-            <a class="service-card reveal" href="/marketing">
+            <a class="service-card reveal" href="marketing.html">
               <div class="service-icon">📣</div>
               <h3>Marketing & Growth</h3>
               <p>Data-driven campaigns, content and performance strategies.</p>
             </a>
 
-            <a class="service-card reveal" href="/services">
+            <a class="service-card reveal" href="services.html">
               <div class="service-icon">☁️</div>
               <h3>Cloud & DevOps</h3>
               <p>Secure, scalable infrastructure and delivery automation.</p>
             </a>
 
-            <a class="service-card reveal" href="/about">
+            <a class="service-card reveal" href="about.html">
               <div class="service-icon">🏢</div>
               <h3>About Us</h3>
               <p>Meet the team and our mission to deliver pragmatic AI.</p>
             </a>
 
-            <a class="service-card reveal" href="/contact">
+            <a class="service-card reveal" href="contact.html">
               <div class="service-icon">✉️</div>
               <h3>Contact</h3>
               <p>Get a proposal, consulting or a discovery session.</p>
@@ -117,8 +118,8 @@
           </div>
 
           <div style="text-align:center;margin-top:2rem;" class="reveal">
-            <a href="/contact" class="cta-button">Request a Consultation</a>
-            <a href="/services" class="secondary-button">Explore Services</a>
+            <a href="contact.html" class="cta-button">Request a Consultation</a>
+            <a href="services.html" class="secondary-button">Explore Services</a>
           </div>
         </div>
       </section>
@@ -129,7 +130,7 @@
       <div class="container">
         <div class="footer-grid">
           <div class="footer-branding">
-            <a href="/" class="logo">
+            <a href="index.html" class="logo">
               <div class="logo">
                 <span>CydexCode</span>
               </div>
@@ -176,22 +177,22 @@
           <div class="footer-links">
             <h3>Services</h3>
             <ul>
-              <li><a href="/services">AI & Machine Learning</a></li>
-              <li><a href="/services">Software Development</a></li>
-              <li><a href="/services">Cloud Computing</a></li>
-              <li><a href="/services">DevOps & Automation</a></li>
-              <li><a href="/services">Data Analytics</a></li>
+              <li><a href="services.html">AI & Machine Learning</a></li>
+              <li><a href="services.html">Software Development</a></li>
+              <li><a href="services.html">Cloud Computing</a></li>
+              <li><a href="services.html">DevOps & Automation</a></li>
+              <li><a href="services.html">Data Analytics</a></li>
             </ul>
           </div>
 
           <div class="footer-links">
             <h3>Company</h3>
             <ul>
-              <li><a href="/about">About Us</a></li>
+              <li><a href="about.html">About Us</a></li>
               <li><a href="#">Careers</a></li>
               <!-- Blog removed -->
               <li><a href="#">Case Studies</a></li>
-              <li><a href="/contact">Contact</a></li>
+              <li><a href="contact.html">Contact</a></li>
             </ul>
           </div>
 

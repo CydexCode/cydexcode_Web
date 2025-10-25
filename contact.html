@@ -3,19 +3,10 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width,initial-scale=1" />
-		<script>
-			(function() {
-				const path = location.pathname;
-				if (path.match(/\.html$/)) {
-					const clean = path.replace(/\.html$/, '');
-					const url = clean === '/index' ? '/' : clean;
-					history.replaceState(null, '', url + location.search + location.hash);
-				}
-			})();
-		</script>
+		<!-- removed automatic .html URL removal to ensure pages remain reloadable at their .html paths -->
 		<title>Contact — CydexCode</title>
 		<link rel="canonical" href="https://www.cydexcode.com/contact" />
-		<link rel="icon" type="image/png" href="favicon-16x16.png" />
+		<link rel="icon" type="image/png" href="D2icon.jpg" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 		<link rel="stylesheet" href="style.css" />
 	</head>
@@ -23,18 +14,27 @@
 		<header>
 			<div class="container">
 				<nav>
-					<a href="/" class="logo">
-						<img src="Di.png" alt="CydexCode" />
+					<a href="index.html" class="logo">
+						<img src="D2icon.jpg" alt="CydexCode" />
 						<span>CydexCode</span>
 					</a>
 					<ul class="nav-links">
-						<li><a href="/">Home</a></li>
-						<li><a href="/services">Services</a></li>
-						<li><a href="/marketing">Marketing</a></li>
-						<li><a href="/about">About</a></li>
-						<li><a href="/contact">Contact</a></li>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="services.html">Services</a></li>
+						<li><a href="marketing.html">Marketing</a></li>
+						<li><a href="about.html">About</a></li>
+						<li><a href="contact.html">Contact</a></li>
 						<!-- Blog link removed -->
 					</ul>
+					<!-- Theme switcher: Light / Dark buttons -->
+					<div class="theme-switcher" aria-hidden="false">
+						<button class="theme-btn light" aria-label="Light mode" title="Light mode">
+							<i class="fa-solid fa-sun"></i>
+						</button>
+						<button class="theme-btn dark" aria-label="Dark mode" title="Dark mode">
+							<i class="fa-solid fa-moon"></i>
+						</button>
+					</div>
 					<button class="mobile-menu-btn">☰</button>
 				</nav>
 			</div>
@@ -73,7 +73,7 @@
 						</div>
 
 									<div class="contact-form">
-										<div style="padding:1rem;background:#fff;border-radius:8px;box-shadow:0 8px 18px rgba(2,6,23,0.04);">
+										<div class="panel">
 											<h3>Contact Us</h3>
 											<p>If you'd like to get in touch, please email us at <a href="mailto:contact@cydexcode.com">contact@cydexcode.com</a> or call +61 4 9126 3412. We're happy to arrange a consultation or send a proposal.</p>
                 
@@ -110,22 +110,22 @@
 						<div class="footer-links">
 							<h3>Services</h3>
 							<ul>
-								<li><a href="/services">AI & Machine Learning</a></li>
-								<li><a href="/services">Software Development</a></li>
-								<li><a href="/services">Cloud Computing</a></li>
-								<li><a href="/services">DevOps & Automation</a></li>
-								<li><a href="/services">Data Analytics</a></li>
+								<li><a href="services.html">AI & Machine Learning</a></li>
+								<li><a href="services.html">Software Development</a></li>
+								<li><a href="services.html">Cloud Computing</a></li>
+								<li><a href="services.html">DevOps & Automation</a></li>
+								<li><a href="services.html">Data Analytics</a></li>
 							</ul>
 						</div>
 
 						<div class="footer-links">
 							<h3>Company</h3>
 							<ul>
-								<li><a href="/about">About Us</a></li>
+								<li><a href="about.html">About Us</a></li>
 								<li><a href="#">Careers</a></li>
 								<!-- Blog removed -->
 								<li><a href="#">Case Studies</a></li>
-								<li><a href="/contact">Contact</a></li>
+								<li><a href="contact.html">Contact</a></li>
 							</ul>
 						</div>
 
