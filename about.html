@@ -1,142 +1,728 @@
-
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width,initial-scale=1" />
-		<!-- removed automatic .html URL removal to ensure pages remain reloadable at their .html paths -->
-		<title>About — CydexCode</title>
-		<link rel="canonical" href="https://www.cydexcode.com/about" />
-		<link rel="icon" type="image/png" href="D2icon.jpg" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-		<link rel="stylesheet" href="style.css" />
-	</head>
-	<body>
-		<header>
-			<div class="container">
-				<nav>
-					<a href="/" class="logo">
-						<img src="D2icon.jpg" alt="CydexCode" />
-						<span>CydexCode</span>
-					</a>
-					<ul class="nav-links">
-						<li><a href="index.html">Home</a></li>
-						<li><a href="services.html">Services</a></li>
-						<li><a href="marketing.html">Marketing</a></li>
-						<li><a href="about.html">About</a></li>
-						<li><a href="contact.html">Contact</a></li>
-						<!-- Blog link removed -->
-					</ul>
-					<!-- Theme switcher: Light / Dark buttons -->
-					<div class="theme-switcher" aria-hidden="false">
-						<button class="theme-btn light" aria-label="Light mode" title="Light mode">
-							<i class="fa-solid fa-sun"></i>
-						</button>
-						<button class="theme-btn dark" aria-label="Dark mode" title="Dark mode">
-							<i class="fa-solid fa-moon"></i>
-						</button>
-					</div>
-					<button class="mobile-menu-btn">☰</button>
-				</nav>
-			</div>
-		</header>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>CydexCode</title>
+    <link rel="canonical" href="https://www.cydexcode.com/about" />
+    <link rel="icon" type="image/png" href="D2icon.jpg" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --secondary: #4ade80;
+            --bg: #f7fffb;
+            --muted: #64748b;
+            --dark: #0f172a;
+            --text: var(--dark);
+            --surface: #ffffff;
+            --card-bg: var(--white);
+            --white: #ffffff;
+            --header-h: 80px;
+            --accent-purple: #a855f7;
+            --accent-blue: #3b82f6;
+        }
 
-		<main>
-			<section class="about">
-				<div class="container">
-					<div class="about-grid">
-						<div class="about-content">
-							<h2>About CydexCode</h2>
-							<p>
-								CydexCode blends AI research, product engineering, and growth
-								expertise to build scalable digital products. We work with
-								startups and enterprises to ship reliable ML and software
-								solutions.
-							</p>
+        html.dark {
+            --bg: #071021;
+            --dark: #e6eef8;
+            --text: var(--dark);
+            --surface: #071827;
+            --card-bg: #0b1622;
+            --muted: #94a3b8;
+            --primary: #4ade80;
+            --primary-dark: #2dd4bf;
+        }
 
-							<div class="commitment-card">
-								<h3>Our Mission</h3>
-								<p>To deliver tangible business outcomes with responsible AI and engineering excellence.</p>
-							</div>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-							<div class="commitment-card">
-								<h3>Our Values</h3>
-								<p>Pragmatism, transparency, and a relentless focus on quality.</p>
-							</div>
-						</div>
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-						<div class="about-image">
-							<img src="04.jpg" alt="Team and products" />
-						</div>
-					</div>
-				</div>
-			</section>
-		</main>
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
 
-			<footer>
-				<div class="container">
-					<div class="footer-grid">
-						<div class="footer-branding">
-							<a href="/" class="logo">
-								<div class="logo">
-									<span>CydexCode</span>
-								</div>
-							</a>
-							<p>
-								Join us in shaping the future of technology through
-								state-of-the-art AI solutions, advanced software engineering, and
-								transformative innovations.
-							</p>
-							<div class="social-links">
-								<a href="https://www.linkedin.com/company/cydexcode" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
-								<a href="https://www.youtube.com/@cydexcode" target="_blank" class="social-link"><i class="fab fa-youtube"></i></a>
-								<a href="https://www.tiktok.com/@cydexcode" target="_blank" class="social-link"><i class="fab fa-tiktok"></i></a>
-								<a href="https://medium.com/@cydexcode" target="_blank" class="social-link"><i class="fab fa-medium"></i></a>
-								<a href="https://web.facebook.com/profile.php?id=61561125212890" target="_blank" class="social-link"><i class="fab fa-facebook"></i></a>
-							</div>
-						</div>
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-h);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+            z-index: 1000;
+        }
 
-						<div class="footer-links">
-							<h3>Services</h3>
-							<ul>
-								<li><a href="services.html">AI & Machine Learning</a></li>
-								<li><a href="services.html">Software Development</a></li>
-								<li><a href="services.html">Cloud Computing</a></li>
-								<li><a href="services.html">DevOps & Automation</a></li>
-								<li><a href="services.html">Data Analytics</a></li>
-							</ul>
-						</div>
+        html.dark header {
+            background: rgba(7, 24, 39, 0.8);
+            border-bottom-color: rgba(255, 255, 255, 0.05);
+        }
 
-						<div class="footer-links">
-							<h3>Company</h3>
-							<ul>
-								<li><a href="about.html">About Us</a></li>
-								<li><a href="#">Careers</a></li>
-								<!-- Blog removed -->
-								<li><a href="#">Case Studies</a></li>
-								<li><a href="contact.html">Contact</a></li>
-							</ul>
-						</div>
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: var(--header-h);
+        }
 
-						<div class="footer-links">
-							<h3>Resources</h3>
-							<ul>
-								<li><a href="#">Documentation</a></li>
-								<li><a href="#">Support</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-								<li><a href="#">Terms of Service</a></li>
-								<li><a href="#">FAQ</a></li>
-							</ul>
-						</div>
-					</div>
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1.25rem;
+            transition: transform 0.3s ease;
+        }
 
-					<div class="copyright">
-						<p>&copy; 2025 CydexCode. All rights reserved.</p>
-					</div>
-				</div>
-			</footer>
+        .logo:hover {
+            transform: scale(1.05);
+        }
 
-		<script src="script.js"></script>
-	</body>
+        .logo img {
+            width: 56px;
+            height: 48px;
+            object-fit: contain;
+            border-radius: 8px;
+            background: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .theme-switcher {
+            display: flex;
+            gap: 0.5rem;
+            margin-left: 1rem;
+        }
+
+        .theme-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 10px;
+            background: transparent;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-btn:hover {
+            background: rgba(16, 185, 129, 0.1);
+            transform: rotate(15deg);
+        }
+
+        .theme-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .about {
+            padding: calc(var(--header-h) + 4rem) 0 4rem 0;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.12), transparent);
+            border-radius: 50%;
+            top: -150px;
+            right: -100px;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .about::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.1), transparent);
+            border-radius: 50%;
+            bottom: -150px;
+            left: -100px;
+            animation: float 15s infinite ease-in-out reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(35px, 35px) scale(1.05); }
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-content {
+            animation: fadeInLeft 0.8s ease;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .about-content h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-content > p {
+            font-size: 1.25rem;
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+        }
+
+        .commitment-card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 24px;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(16, 185, 129, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .commitment-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--accent-blue));
+            transform: scaleY(0);
+            transition: transform 0.4s ease;
+        }
+
+        .commitment-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 20px 50px rgba(16, 185, 129, 0.15);
+            border-color: var(--primary);
+        }
+
+        .commitment-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .commitment-card h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .commitment-card h3::before {
+            content: '🎯';
+            font-size: 2rem;
+        }
+
+        .commitment-card:nth-child(3) h3::before {
+            content: '💎';
+        }
+
+        .commitment-card p {
+            color: var(--muted);
+            line-height: 1.8;
+            font-size: 1.125rem;
+        }
+
+        .about-image {
+            animation: fadeInRight 0.8s ease;
+            position: relative;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 24px;
+            box-shadow: 0 25px 60px rgba(16, 185, 129, 0.2);
+            transition: transform 0.4s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.02);
+        }
+
+        .values-section {
+            padding: 5rem 0;
+            background: var(--surface);
+            border-radius: 40px;
+            margin: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--muted);
+            font-size: 1.125rem;
+            margin-bottom: 3rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(16, 185, 129, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 50px rgba(16, 185, 129, 0.15);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover .value-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .value-card h4 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .value-card p {
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        html.dark footer {
+            background: #04121a;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-branding .logo {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .footer-branding p {
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--muted);
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--muted);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: var(--header-h);
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            html.dark .nav-links {
+                background: rgba(7, 24, 39, 0.95);
+            }
+
+            .nav-links.active {
+                transform: translateX(0);
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <img src="D2icon.jpg" alt="CydexCode Logo" id="main-logo" />
+                    <span>CydexCode</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="marketing.html">Marketing</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="theme-switcher">
+                    <button class="theme-btn light" aria-label="Light mode">
+                        <i class="fa-solid fa-sun"></i>
+                    </button>
+                    <button class="theme-btn dark active" aria-label="Dark mode">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                </div>
+                <button class="mobile-menu-btn">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="about">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-content">
+                        <h2>About CydexCode</h2>
+                        <p>
+                            CydexCode blends AI research, product engineering, and growth
+                            expertise to build scalable digital products. We work with
+                            startups and enterprises to ship reliable ML and software
+                            solutions.
+                        </p>
+
+                        <div class="commitment-card">
+                            <h3>Our Mission</h3>
+                            <p>To deliver tangible business outcomes with responsible AI and engineering excellence.</p>
+                        </div>
+
+                        <div class="commitment-card">
+                            <h3>Our Values</h3>
+                            <p>Pragmatism, transparency, and a relentless focus on quality.</p>
+                        </div>
+                    </div>
+
+                    <div class="about-image">
+                        <img src="04.jpg" alt="Team and products" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="values-section">
+            <div class="container">
+                <h2 class="section-title">What Drives Us</h2>
+                <p class="section-subtitle">The principles that guide our work and relationships</p>
+                
+                <div class="values-grid">
+                    <div class="value-card">
+                        <span class="value-icon">🚀</span>
+                        <h4>Innovation First</h4>
+                        <p>Pushing boundaries with cutting-edge AI and modern engineering practices</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <span class="value-icon">🤝</span>
+                        <h4>Client Partnership</h4>
+                        <p>Building long-term relationships based on trust and mutual success</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <span class="value-icon">⚡</span>
+                        <h4>Speed & Agility</h4>
+                        <p>Rapid iteration and deployment without compromising quality</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <span class="value-icon">🎓</span>
+                        <h4>Continuous Learning</h4>
+                        <p>Staying ahead with the latest technologies and methodologies</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-branding">
+                    <a href="index.html" class="logo">
+                        <span>CydexCode</span>
+                    </a>
+                    <p>Join us in shaping the future of technology through state-of-the-art AI solutions, advanced software engineering, and transformative innovations.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/cydexcode" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.youtube.com/@cydexcode" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@cydexcode" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://medium.com/@cydexcode" target="_blank"><i class="fab fa-medium"></i></a>
+                        <a href="https://web.facebook.com/profile.php?id=61561125212890" target="_blank"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html">AI & Machine Learning</a></li>
+                        <li><a href="services.html">Software Development</a></li>
+                        <li><a href="services.html">Cloud Computing</a></li>
+                        <li><a href="services.html">DevOps & Automation</a></li>
+                        <li><a href="services.html">Data Analytics</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 CydexCode. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        const logoImg = document.getElementById('main-logo');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
+
+        const lightBtn = document.querySelector('.theme-btn.light');
+        const darkBtn = document.querySelector('.theme-btn.dark');
+        const html = document.documentElement;
+
+        function setLogoForTheme(theme) {
+            if (logoImg) {
+                if (theme === 'dark') {
+                    logoImg.src = 'Di.png';
+                } else {
+                    logoImg.src = 'D2icon.jpg';
+                }
+            }
+        }
+
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        html.classList.toggle('dark', savedTheme === 'dark');
+        setLogoForTheme(savedTheme);
+        updateThemeButtons(savedTheme);
+
+        lightBtn.addEventListener('click', () => {
+            html.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+            setLogoForTheme('light');
+            updateThemeButtons('light');
+        });
+
+        darkBtn.addEventListener('click', () => {
+            html.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+            setLogoForTheme('dark');
+            updateThemeButtons('dark');
+        });
+
+        function updateThemeButtons(theme) {
+            lightBtn.classList.toggle('active', theme === 'light');
+            darkBtn.classList.toggle('active', theme === 'dark');
+        }
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav') && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.textContent = '☰';
+            }
+        });
+    </script>
+</body>
 </html>
-

@@ -4,74 +4,65 @@
     --secondary:#4ade80;
     --bg:#f7fffb;
     --muted:#64748b;
-    --dark:#0f172a; /* text color for light mode */
+    --dark:#0f172a;
     --text:var(--dark);
     --surface:#ffffff;
     --card-bg:var(--white);
     --white:#ffffff;
-    --header-h:88px; /* default header height used for spacing */
+    --header-h:88px;
     --header-bg: rgba(255,255,255,0.9);
     --header-border: rgba(16,185,129,0.04);
-    /* hero backgrounds */
     --hero-bg: linear-gradient(120deg,#ffffff 0%, #f0fff8 50%, #f7fffb 100%);
     --hero-anim: heroShift;
-    /* footer colors */
     --footer-bg: #0f172a;
     --footer-color: var(--white);
+    --accent-purple: #a855f7;
+    --accent-blue: #3b82f6;
+    --accent-orange: #f97316;
 }
 
-/* Dark theme overrides applied when <html> has .dark */
 html.dark{
-    --bg:#071021; /* page background */
-    --dark:#e6eef8; /* main text (in dark mode this is light) */
+    --bg:#071021;
+    --dark:#e6eef8;
     --text:var(--dark);
-    --surface:#071827; /* surface / section backgrounds */
+    --surface:#071827;
     --card-bg:#0b1622;
     --muted:#94a3b8;
-    --primary:#4ade80; /* slightly brighter primary in dark */
+    --primary:#4ade80;
     --primary-dark:#2dd4bf;
     --header-bg: rgba(2,6,23,0.75);
     --header-border: rgba(255,255,255,0.03);
     --hero-bg: linear-gradient(120deg,#031423 0%, #071827 60%, #071827 100%);
     --hero-anim: none;
-    /* footer colors in dark mode */
     --footer-bg: #04121a;
     --footer-color: var(--white);
 }
 
-/* Motion, transitions and reveal utilities */
 *{transition-duration:180ms;transition-timing-function:cubic-bezier(.2,.9,.3,1)}
 
-/* Reveal-on-scroll helper */
 .reveal{opacity:0;transform:translateY(12px);will-change:opacity,transform}
 .reveal.visible{opacity:1;transform:none}
 
-/* Hero subtle animated gradient (theme-aware) */
 .hero{background:var(--hero-bg);background-size:200% 200%;animation:var(--hero-anim) 10s ease-in-out infinite alternate}
 @keyframes heroShift{from{background-position:0% 50%}to{background-position:100% 50%}}
 
-/* Card lift and hover states */
 .service-card{transition:transform 260ms cubic-bezier(.2,.9,.3,1),box-shadow 260ms}
 .service-card:hover,.service-card:focus-within{transform:translateY(-8px);box-shadow:0 18px 40px rgba(16,185,129,0.08)}
 
-/* CTA micro-interaction */
 .cta-button{transition:transform 160ms ease,box-shadow 160ms ease}
 .cta-button:hover,.cta-button:focus{transform:translateY(-3px);box-shadow:0 8px 22px rgba(16,185,129,0.14)}
 .secondary-button{transition:transform 160ms ease,box-shadow 160ms ease}
 .secondary-button:hover,.secondary-button:focus{transform:translateY(-2px);box-shadow:0 6px 18px rgba(16,185,129,0.06)}
 
-/* Social icons spacing and hover */
 .social-links a{display:inline-flex;align-items:center;justify-content:center;margin-right:0.5rem;color:rgba(255,255,255,0.85);opacity:0.95}
 .social-links a:hover{color:var(--primary);transform:translateY(-2px)}
 
-/* Respect user preference for reduced motion */
 @media (prefers-reduced-motion: reduce){
     *{transition:none!important}
     .hero{animation:none}
     .reveal{opacity:1;transform:none}
 }
 
-/* Layout */
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
@@ -80,7 +71,7 @@ body{
     color:var(--text);
     background:var(--bg);
     display:flex;
-    flex-direction:column; /* sticky footer */
+    flex-direction:column;
     min-height:100vh;
 }
 
@@ -93,7 +84,6 @@ main{flex:1}
     padding:0 1rem;
 }
 
-/* Header / Nav */
 header{
     position:fixed;
     top:0;
@@ -113,22 +103,17 @@ nav{display:flex;align-items:center;justify-content:space-between;min-height:var
 .nav-links a:hover{color:var(--primary)}
 .mobile-menu-btn{display:none;background:none;border:none;font-size:1.25rem;color:var(--text)}
 
-/* account for fixed header height */
-/* account for fixed header height */
 body > main, .hero {padding-top:var(--header-h)}
 
-/* Add smooth page transition with slide effect */
 main {
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Hero */
 .hero{padding-bottom:3rem;background:var(--hero-bg)}
 .hero-content{max-width:720px}
 .hero h1{font-size:3.5rem;line-height:1.1;margin-bottom:1.5rem;font-weight:800;transition:all 0.4s ease;white-space:nowrap}
 .hero p{color:var(--muted);font-size:1.3rem;margin-bottom:1.5rem;line-height:1.6;transition:all 0.4s ease}
 
-/* Improve CTA visibility in hero across themes */
 .hero .cta-button{box-shadow:0 12px 30px rgba(16,185,129,0.12);padding:1rem 2.5rem;font-size:1.1rem;transition:all 0.3s ease}
 .hero .secondary-button{box-shadow:none;padding:1rem 2.5rem;font-size:1.1rem;transition:all 0.3s ease}
 html.dark .hero .cta-button{box-shadow:0 10px 26px rgba(0,0,0,0.45)}
@@ -137,7 +122,6 @@ html.dark .hero .secondary-button{background:transparent;border-color:rgba(255,2
 .cta-button{background:var(--primary);color:#fff;padding:0.75rem 1.25rem;border-radius:8px;text-decoration:none;font-weight:700}
 .secondary-button{background:var(--surface);color:var(--primary);padding:0.7rem 1.25rem;border-radius:8px;border:1px solid rgba(16,185,129,0.12);text-decoration:none}
 
-/* Sections */
 section{padding:3.5rem 0}
 main > section:first-child{padding-top:0;margin-top:-2rem}
 .services{padding-top:0;margin-top:-10px}
@@ -145,7 +129,6 @@ main > section:first-child{padding-top:0;margin-top:-2rem}
 .section-header h2{font-size:1.75rem;color:var(--primary-dark);margin-bottom:0.5rem}
 .section-header p{color:var(--muted);max-width:720px;margin:0 auto}
 
-/* utility: muted text that responds to theme */
 .muted{color:var(--muted)}
 
 .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
@@ -155,7 +138,6 @@ main > section:first-child{padding-top:0;margin-top:-2rem}
 .service-card h3{margin:0 0 0.5rem 0;color:var(--primary-dark)}
 .service-card p{color:var(--muted)}
 
-/* Large attractive service cards with prominent images */
 .services-grid-large{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2rem;justify-items:center;align-items:start}
 .service-card-large{
     background:var(--card-bg);
@@ -205,12 +187,6 @@ main > section:first-child{padding-top:0;margin-top:-2rem}
     box-shadow:0 20px 50px rgba(16,185,129,0.12);
 }
 
-@media (max-width:768px){
-    .services-grid-large{grid-template-columns:1fr;gap:1.5rem}
-    .service-card-image{height:200px}
-}
-
-/* Full-width service card variant */
 .service-card-full{
     max-width:100%;
     grid-column:1/-1;
@@ -227,12 +203,10 @@ main > section:first-child{padding-top:0;margin-top:-2rem}
 .stat-number{font-size:1.6rem;font-weight:800;color:var(--primary)}
 .testimonial-card{background:var(--card-bg);padding:1rem;border-radius:10px;color:var(--text)}
 
-/* Contact & form */
 .contact-flex{display:flex;gap:2rem}
 .contact-info{flex:1}
 .contact-form{flex:1}
 
-/* Footer */
 footer{background:var(--footer-bg);color:var(--footer-color);padding:3rem 0}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:1rem}
 .footer-branding p{color:var(--muted)}
@@ -240,16 +214,336 @@ footer{background:var(--footer-bg);color:var(--footer-color);padding:3rem 0}
 .footer-links a{color:var(--muted);text-decoration:none}
 .copyright{text-align:center;padding-top:1.25rem;margin-top:1.25rem;border-top:1px solid rgba(255,255,255,0.04);color:var(--muted)}
 
-/* Responsive */
+.theme-switcher{display:flex;align-items:center;gap:0.4rem;margin-left:0.75rem}
+.theme-btn{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:8px;border:none;background:transparent;color:var(--text);cursor:pointer;font-size:1rem}
+.theme-btn:focus{outline:2px solid rgba(16,185,129,0.18);outline-offset:2px}
+.theme-btn:hover{background:rgba(16,185,129,0.06);transform:none}
+.theme-btn.active{background:var(--primary);color:var(--white)}
+
+.panel{padding:1rem;background:var(--card-bg);border-radius:8px;box-shadow:0 8px 18px rgba(2,6,23,0.04);color:var(--text)}
+
+/* ========================================
+   MODERN SERVICES PAGE STYLES
+   ======================================== */
+
+/* Hero Services Section */
+.hero-services{
+    padding:calc(var(--header-h) + 4rem) 0 4rem 0;
+    background:var(--hero-bg);
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.hero-services::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background:radial-gradient(circle at 30% 50%, rgba(16,185,129,0.08) 0%, transparent 50%);
+    pointer-events:none;
+}
+
+.hero-services h1{
+    font-size:3.5rem;
+    font-weight:800;
+    margin-bottom:1rem;
+    background:linear-gradient(135deg, var(--primary), var(--accent-blue));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+}
+
+.hero-services p{
+    font-size:1.3rem;
+    color:var(--muted);
+    max-width:700px;
+    margin:0 auto 2rem;
+}
+
+/* Stats Bar */
+.stats-bar{
+    display:flex;
+    justify-content:center;
+    gap:3rem;
+    margin-top:2rem;
+    flex-wrap:wrap;
+}
+
+.stat-item{
+    text-align:center;
+}
+
+.stat-item .stat-number{
+    font-size:2.5rem;
+    font-weight:800;
+    color:var(--primary);
+    display:block;
+}
+
+.stat-label{
+    color:var(--muted);
+    font-size:0.95rem;
+    margin-top:0.25rem;
+}
+
+/* Services Section - Modern Bento Style */
+.services-section{
+    padding:4rem 0;
+}
+
+.section-title{
+    text-align:center;
+    font-size:2.5rem;
+    font-weight:800;
+    margin-bottom:3rem;
+    color:var(--text);
+}
+
+.bento-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+    gap:1.5rem;
+    margin-bottom:3rem;
+}
+
+.service-card-modern{
+    background:var(--card-bg);
+    border-radius:20px;
+    padding:2rem;
+    position:relative;
+    overflow:hidden;
+    border:1px solid rgba(16,185,129,0.1);
+    transition:all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor:pointer;
+}
+
+.service-card-modern::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:4px;
+    background:linear-gradient(90deg, var(--primary), var(--accent-blue));
+    transform:scaleX(0);
+    transition:transform 0.4s ease;
+}
+
+.service-card-modern:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 60px rgba(16,185,129,0.15);
+    border-color:var(--primary);
+}
+
+.service-card-modern:hover::before{
+    transform:scaleX(1);
+}
+
+.service-icon-modern{
+    width:70px;
+    height:70px;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:2rem;
+    margin-bottom:1.5rem;
+    background:linear-gradient(135deg, rgba(16,185,129,0.1), rgba(59,130,246,0.1));
+    position:relative;
+}
+
+.service-card-modern:nth-child(1) .service-icon-modern{background:linear-gradient(135deg, rgba(168,85,247,0.15), rgba(168,85,247,0.05))}
+.service-card-modern:nth-child(2) .service-icon-modern{background:linear-gradient(135deg, rgba(59,130,246,0.15), rgba(59,130,246,0.05))}
+.service-card-modern:nth-child(3) .service-icon-modern{background:linear-gradient(135deg, rgba(16,185,129,0.15), rgba(16,185,129,0.05))}
+.service-card-modern:nth-child(4) .service-icon-modern{background:linear-gradient(135deg, rgba(249,115,22,0.15), rgba(249,115,22,0.05))}
+
+.service-card-modern h3{
+    font-size:1.5rem;
+    font-weight:700;
+    margin-bottom:0.75rem;
+    color:var(--text);
+}
+
+.service-card-modern p{
+    color:var(--muted);
+    line-height:1.7;
+    margin-bottom:1rem;
+}
+
+.service-features{
+    list-style:none;
+    padding:0;
+}
+
+.service-features li{
+    padding:0.5rem 0;
+    color:var(--muted);
+    font-size:0.95rem;
+    display:flex;
+    align-items:center;
+    gap:0.5rem;
+}
+
+.service-features li::before{
+    content:'✓';
+    color:var(--primary);
+    font-weight:800;
+    font-size:1.1rem;
+}
+
+/* Technology Stack Section */
+.tech-stack{
+    padding:4rem 0;
+    background:var(--surface);
+}
+
+.tech-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));
+    gap:1.5rem;
+    margin-top:2rem;
+}
+
+.tech-card{
+    background:var(--card-bg);
+    padding:1.5rem;
+    border-radius:16px;
+    text-align:center;
+    border:1px solid rgba(16,185,129,0.1);
+    transition:all 0.3s ease;
+}
+
+.tech-card:hover{
+    transform:translateY(-4px);
+    border-color:var(--primary);
+    box-shadow:0 10px 30px rgba(16,185,129,0.1);
+}
+
+.tech-icon{
+    font-size:2.5rem;
+    margin-bottom:0.75rem;
+    display:block;
+}
+
+.tech-name{
+    font-weight:600;
+    color:var(--text);
+    font-size:1rem;
+}
+
+.tech-desc{
+    font-size:0.85rem;
+    color:var(--muted);
+    margin-top:0.25rem;
+}
+
+/* Process Section */
+.process-section{
+    padding:4rem 0;
+}
+
+.process-steps{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+    gap:2rem;
+    margin-top:2rem;
+}
+
+.process-step{
+    position:relative;
+    padding:2rem;
+    background:var(--card-bg);
+    border-radius:16px;
+    border:1px solid rgba(16,185,129,0.1);
+}
+
+.step-number{
+    position:absolute;
+    top:-15px;
+    left:30px;
+    width:40px;
+    height:40px;
+    background:var(--primary);
+    color:white;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+    font-size:1.2rem;
+}
+
+.process-step h4{
+    margin:1rem 0 0.5rem 0;
+    color:var(--text);
+    font-size:1.2rem;
+}
+
+.process-step p{
+    color:var(--muted);
+    font-size:0.95rem;
+}
+
+/* CTA Section */
+.cta-section{
+    padding:4rem 0;
+    text-align:center;
+    background:linear-gradient(135deg, rgba(16,185,129,0.05), rgba(59,130,246,0.05));
+}
+
+.cta-buttons{
+    display:flex;
+    gap:1rem;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-top:2rem;
+}
+
+.cta-buttons .cta-button{
+    padding:1rem 2.5rem;
+    background:var(--primary);
+    color:white;
+    border:none;
+    border-radius:12px;
+    font-weight:700;
+    text-decoration:none;
+    display:inline-block;
+    transition:all 0.3s ease;
+    cursor:pointer;
+}
+
+.cta-buttons .cta-button:hover{
+    background:var(--primary-dark);
+    transform:translateY(-2px);
+    box-shadow:0 10px 30px rgba(16,185,129,0.3);
+}
+
+.secondary-btn{
+    background:transparent !important;
+    border:2px solid var(--primary);
+    color:var(--primary) !important;
+}
+
+.secondary-btn:hover{
+    background:var(--primary) !important;
+    color:white !important;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
 @media (max-width:992px){
     .about-grid{grid-template-columns:1fr}
     .stats-grid{grid-template-columns:repeat(2,1fr)}
     .testimonial-card{padding:0.9rem}
 }
+
 @media (max-width:768px){
-    /* reduce header height on narrow screens to free vertical space */
     :root{--header-h:64px}
-    /* Mobile navigation: full-width drop-down, scrollable if long with slide down/up animation */
     .nav-links{position:fixed;top:var(--header-h);left:0;right:0;background:rgba(255,255,255,0.98);flex-direction:column;padding:0.5rem 0;box-shadow:0 10px 30px rgba(0,0,0,0.2);z-index:1001;max-height:calc(100vh - var(--header-h));overflow:auto;opacity:0;visibility:hidden;transform:translateY(-100%);transition:opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;border-bottom:2px solid var(--primary)}
     html.dark .nav-links{background:rgba(15,23,42,0.98);box-shadow:0 10px 30px rgba(0,0,0,0.5)}
     .nav-links.active{display:flex;opacity:1;visibility:visible;transform:translateY(0)}
@@ -259,33 +553,41 @@ footer{background:var(--footer-bg);color:var(--footer-color);padding:3rem 0}
     .nav-links a.active{background:var(--primary);color:#ffffff !important;font-weight:700;box-shadow:0 2px 8px rgba(16,185,129,0.3);border:2px solid rgba(16,185,129,0.8)}
     .mobile-menu-btn{display:block;z-index:1002}
 
-    /* Make hero CTAs stack on small screens to avoid overlap */
     .hero h1{font-size:1.55rem}
     .hero p{font-size:0.95rem}
     .hero{padding-bottom:2rem}
     .logo img{width:56px;height:40px}
     .hero-buttons{flex-direction:column;align-items:stretch}
-     /* Ensure CTAs become block-level full-width when not inside a flex hero container
-         (some pages place CTAs inside a plain centered div). Making them block
-         ensures width:100% applies and they stack cleanly on very small screens. */
-     .cta-button, .secondary-button{display:block;width:100%;text-align:center;box-sizing:border-box;margin:0.45rem 0}
+    .cta-button, .secondary-button{display:block;width:100%;text-align:center;box-sizing:border-box;margin:0.45rem 0}
 
-    /* Services grid collapse to single column for readability */
     .services-grid{grid-template-columns:1fr;gap:1rem}
     .service-card{display:block;text-decoration:none;color:inherit}
-
-    /* add breathing room at the bottom so CTAs don't visually collide with footer */
     .services{padding-bottom:3.5rem}
 
     .footer-grid{grid-template-columns:1fr 1fr}
     .stats-grid{grid-template-columns:1fr}
     .contact-flex{flex-direction:column}
+    
+    .services-grid-large{grid-template-columns:1fr;gap:1.5rem}
+    .service-card-image{height:200px}
+    
+    /* Modern Services Page Responsive */
+    .hero-services h1{font-size:2rem}
+    .hero-services p{font-size:1.1rem}
+    .stats-bar{gap:1.5rem}
+    .stat-item .stat-number{font-size:2rem}
+    .bento-grid{grid-template-columns:1fr;gap:1.5rem}
+    .tech-grid{grid-template-columns:repeat(2, 1fr)}
+    .process-steps{grid-template-columns:1fr}
 }
 
-/* Ensure the mobile menu button is visible in dark mode (white icon/text) */
 html.dark .mobile-menu-btn{color:var(--white)}
 
-/* Extra small screens (phones) tweaks */
+@media (max-width:480px){
+    .theme-switcher{display:flex;gap:0.3rem}
+    .theme-btn{width:36px;height:36px;font-size:0.95rem}
+}
+
 @media (max-width:446px){
     :root{--header-h:56px}
     nav{min-height:var(--header-h)}
@@ -296,26 +598,13 @@ html.dark .mobile-menu-btn{color:var(--white)}
     .nav-links a{font-size:16px;padding:0.75rem 1rem}
     .cta-button{padding:0.6rem 0.9rem}
     .secondary-button{padding:0.55rem 0.9rem}
-    /* Extra-small: make any CTAs that remain inline stack and have spacing */
     .cta-button, .secondary-button{display:block;width:100%;box-sizing:border-box;margin:0.45rem 0}
-    /* extra bottom padding to keep CTAs away from footer */
     .services{padding-bottom:4.25rem}
     .footer-grid{grid-template-columns:1fr}
+    
+    /* Modern Services Page Extra Small */
+    .hero-services h1{font-size:1.75rem}
+    .hero-services p{font-size:1rem}
+    .stat-item .stat-number{font-size:1.75rem}
+    .section-title{font-size:2rem}
 }
-
-/* Theme switcher (navbar) */
-.theme-switcher{display:flex;align-items:center;gap:0.4rem;margin-left:0.75rem}
-.theme-btn{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:8px;border:none;background:transparent;color:var(--text);cursor:pointer;font-size:1rem}
-.theme-btn:focus{outline:2px solid rgba(16,185,129,0.18);outline-offset:2px}
-.theme-btn:hover{background:rgba(16,185,129,0.06);transform:none}
-.theme-btn.active{background:var(--primary);color:var(--white)}
-
-/* Reduce visibility on very small screens if necessary (keeps layout tidy) */
-@media (max-width:480px){
-    .theme-switcher{display:flex;gap:0.3rem}
-    .theme-btn{width:36px;height:36px;font-size:0.95rem}
-}
-
-/* Generic panel/card used by forms and callouts */
-.panel{padding:1rem;background:var(--card-bg);border-radius:8px;box-shadow:0 8px 18px rgba(2,6,23,0.04);color:var(--text)}
-

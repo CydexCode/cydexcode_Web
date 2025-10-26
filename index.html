@@ -1,227 +1,761 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- removed automatic .html URL removal to ensure pages remain reloadable at their .html paths -->
     <link rel="icon" type="image/png" href="D2icon.jpg" />
-    <!-- For PNG -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <title>CydexCode</title>
-
     <link rel="canonical" href="https://www.cydexcode.com/" />
+    <style>
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --secondary: #4ade80;
+            --bg: #f7fffb;
+            --muted: #64748b;
+            --dark: #0f172a;
+            --text: var(--dark);
+            --surface: #ffffff;
+            --card-bg: var(--white);
+            --white: #ffffff;
+            --header-h: 80px;
+            --accent-purple: #a855f7;
+            --accent-blue: #3b82f6;
+            --accent-orange: #f97316;
+        }
 
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <!-- Header -->
+        html.dark {
+            --bg: #071021;
+            --dark: #e6eef8;
+            --text: var(--dark);
+            --surface: #071827;
+            --card-bg: #0b1622;
+            --muted: #94a3b8;
+            --primary: #4ade80;
+            --primary-dark: #2dd4bf;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header with glassmorphism */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-h);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        html.dark header {
+            background: rgba(7, 24, 39, 0.8);
+            border-bottom-color: rgba(255, 255, 255, 0.05);
+        }
+
+        header.scrolled {
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: var(--header-h);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1.25rem;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo img {
+            width: 56px;
+            height: 48px;
+            object-fit: contain;
+            border-radius: 18px;
+            background: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .theme-switcher {
+            display: flex;
+            gap: 0.5rem;
+            margin-left: 1rem;
+        }
+
+        .theme-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 10px;
+            background: transparent;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-btn:hover {
+            background: rgba(16, 185, 129, 0.1);
+            transform: rotate(15deg);
+        }
+
+        .theme-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        /* Hero Section with gradient mesh */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--bg) 0%, rgba(16, 185, 129, 0.05) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.15), transparent);
+            border-radius: 50%;
+            top: -300px;
+            right: -200px;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1), transparent);
+            border-radius: 50%;
+            bottom: -200px;
+            left: -100px;
+            animation: float 15s infinite ease-in-out reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, 50px) scale(1.1); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--muted);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 1rem 2rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.4);
+        }
+
+        .secondary-button {
+            padding: 1rem 2rem;
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            border: 2px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .secondary-button:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            font-size: 1.125rem;
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid-large {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .service-card-large {
+            background: var(--card-bg);
+            border-radius: 24px;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            border: 1px solid rgba(16, 185, 129, 0.1);
+        }
+
+        .service-card-large::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent-blue));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card-large:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 60px rgba(16, 185, 129, 0.2);
+            border-color: var(--primary);
+        }
+
+        .service-card-large:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card-image {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .service-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card-large:hover .service-card-image img {
+            transform: scale(1.1);
+        }
+
+        .service-card-content {
+            padding: 2rem;
+        }
+
+        .service-card-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text);
+        }
+
+        .service-card-content p {
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .service-card-full {
+            grid-column: 1 / -1;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        html.dark footer {
+            background: #04121a;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-branding .logo {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .footer-branding p {
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--muted);
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: var(--header-h);
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            html.dark .nav-links {
+                background: rgba(7, 24, 39, 0.95);
+            }
+
+            .nav-links.active {
+                transform: translateX(0);
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero {
+                min-height: 80vh;
+                padding: 2rem 0;
+            }
+
+            .services-grid-large {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
     <header>
-      <div class="container">
-        <nav>
-          <a href="index.html" class="logo">
-            <div class="logo">
-              <img src="D2icon.jpg" alt="CydexCode Logo" />
-              <span>CydexCode</span>
-            </div>
-          </a>
-          <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="marketing.html">Marketing</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <!-- <li><a href="https://medium.com/@cydexcode">Blog</a></li> -->
-          </ul>
-
-          <!-- Theme switcher: Light / Dark buttons -->
-          <div class="theme-switcher" aria-hidden="false">
-            <button class="theme-btn light" aria-label="Light mode" title="Light mode">
-              <i class="fa-solid fa-sun"></i>
-            </button>
-            <button class="theme-btn dark" aria-label="Dark mode" title="Dark mode">
-              <i class="fa-solid fa-moon"></i>
-            </button>
-          </div>
-
-          <button class="mobile-menu-btn">☰</button>
-        </nav>
-      </div>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <img src="D2icon.jpg" alt="CydexCode Logo" id="main-logo" />
+                    <span>CydexCode</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="marketing.html">Marketing</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="theme-switcher">
+                    <button class="theme-btn light" aria-label="Light mode">
+                        <i class="fa-solid fa-sun"></i>
+                    </button>
+                    <button class="theme-btn dark active" aria-label="Dark mode">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                </div>
+                <button class="mobile-menu-btn">☰</button>
+            </nav>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-      <div class="container">
-        <!-- decorative animated layer (visual only) -->
-        <div class="hero-decor" aria-hidden="true"></div>
-        <div class="hero-content reveal" data-animate-delay="0">
-          <h1>AI-powered Software Solutions</h1>
-          <H1>& Marketing</H1>
-          <p>
-            Revolutionizing the digital landscape with cutting-edge Artificial
-            Intelligence, Machine Learning, and Software Development solutions
-            tailored to your needs.
-          </p>
-          <div class="hero-buttons">
-            <a href="services.html" class="cta-button">Explore Services</a>
-            <a href="contact.html" class="secondary-button">Contact Us</a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <main>
-      <section class="services">
+    <section class="hero">
         <div class="container">
-          <div class="section-header">
-            <h2>What we do</h2>
-            <p>AI, software engineering, cloud infrastructure and growth marketing — built for outcomes.</p>
-          </div>
-
-          <div class="services-grid-large">
-            <a class="service-card-large reveal" href="services.html">
-              <div class="service-card-image">
-                <img src="images/ai.png" alt="AI & Machine Learning" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22250%22%3E%3Crect fill=%22%230f172a%22 width=%22100%25%22 height=%22100%25%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2260%22%3E🤖%3C/text%3E%3C/svg%3E'" />
-              </div>
-              <div class="service-card-content">
-                <h3>AI & Machine Learning</h3>
-                <p>Models, MLOps and production ML that solves business problems. Advanced predictive analytics and custom ML solutions.</p>
-              </div>
-            </a>
-
-            <a class="service-card-large reveal" href="services.html">
-              <div class="service-card-image">
-                <img src="images/cloud.jpg" alt="Cloud & DevOps" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22250%22%3E%3Crect fill=%22%230ea5e9%22 width=%22100%25%22 height=%22100%25%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2260%22%3E☁️%3C/text%3E%3C/svg%3E'" />
-              </div>
-              <div class="service-card-content">
-                <h3>Cloud & DevOps</h3>
-                <p>Secure, scalable infrastructure and delivery automation. AWS, Azure, Docker, Kubernetes and CI/CD pipelines.</p>
-              </div>
-            </a>
-
-            <a class="service-card-large reveal" href="services.html">
-              <div class="service-card-image">
-                <img src="images/software.jpg" alt="Software Development" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22250%22%3E%3Crect fill=%22%23064e3b%22 width=%22100%25%22 height=%22100%25%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2260%22%3E💻%3C/text%3E%3C/svg%3E'" />
-              </div>
-              <div class="service-card-content">
-                <h3>Software Development</h3>
-                <p>Product engineering and APIs for scalable systems. Full-stack development and enterprise-grade solutions.</p>
-              </div>
-            </a>
-          </div>
-
-          <div class="services-grid-large" style="margin-top:2rem;">
-            <a class="service-card-large reveal service-card-full" href="marketing.html">
-              <div class="service-card-image">
-                <img src="images/marketing.webp" alt="Marketing & Growth" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22250%22%3E%3Crect fill=%22%23f59e0b%22 width=%22100%25%22 height=%22100%25%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2260%22%3E📣%3C/text%3E%3C/svg%3E'" />
-              </div>
-              <div class="service-card-content">
-                <h3>Marketing & Growth</h3>
-                <p>Data-driven campaigns, content and performance strategies. Paid media, SEO, and conversion optimization.</p>
-              </div>
-            </a>
-
-            <!-- About & Contact cards removed from homepage as requested -->
-          </div>
-
-          <div style="text-align:center;margin-top:2rem;" class="reveal">
-            <a href="contact.html" class="cta-button">Request a Consultation</a>
-            <a href="services.html" class="secondary-button">Explore Services</a>
-          </div>
+            <div class="hero-content">
+                <h1>AI-powered Software Solutions & Marketing</h1>
+                <p>
+                    Revolutionizing the digital landscape with cutting-edge Artificial
+                    Intelligence, Machine Learning, and Software Development solutions
+                    tailored to your needs.
+                </p>
+                <div class="hero-buttons">
+                    <a href="services.html" class="cta-button">
+                        Explore Services
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="contact.html" class="secondary-button">Contact Us</a>
+                </div>
+            </div>
         </div>
-      </section>
+    </section>
+
+    <main>
+        <section class="services">
+            <div class="container">
+                <div class="section-header">
+                    <h2>What we do</h2>
+                    <p>AI, software engineering, cloud infrastructure and growth marketing — built for outcomes.</p>
+                </div>
+
+                <div class="services-grid-large">
+                    <a class="service-card-large" href="services.html">
+                        <div class="service-card-image">
+                            <img src="images/ai.png" alt="AI & Machine Learning" loading="lazy" />
+                        </div>
+                        <div class="service-card-content">
+                            <h3>AI & Machine Learning</h3>
+                            <p>Models, MLOps and production ML that solves business problems. Advanced predictive analytics and custom ML solutions.</p>
+                        </div>
+                    </a>
+
+                    <a class="service-card-large" href="services.html">
+                        <div class="service-card-image">
+                            <img src="images/cloud.jpg" alt="Cloud & DevOps" loading="lazy" />
+                        </div>
+                        <div class="service-card-content">
+                            <h3>Cloud & DevOps</h3>
+                            <p>Secure, scalable infrastructure and delivery automation. AWS, Azure, Docker, Kubernetes and CI/CD pipelines.</p>
+                        </div>
+                    </a>
+
+                    <a class="service-card-large" href="services.html">
+                        <div class="service-card-image">
+                            <img src="images/software.jpg" alt="Software Development" loading="lazy" />
+                        </div>
+                        <div class="service-card-content">
+                            <h3>Software Development</h3>
+                            <p>Product engineering and APIs for scalable systems. Full-stack development and enterprise-grade solutions.</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="services-grid-large">
+                    <a class="service-card-large service-card-full" href="marketing.html">
+                        <div class="service-card-image">
+                            <img src="images/marketing.webp" alt="Marketing & Growth" loading="lazy" />
+                        </div>
+                        <div class="service-card-content">
+                            <h3>Marketing & Growth</h3>
+                            <p>Data-driven campaigns, content and performance strategies. Paid media, SEO, and conversion optimization.</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div style="text-align:center;margin-top:3rem;">
+                    <a href="contact.html" class="cta-button">Request a Consultation</a>
+                    <a href="services.html" class="secondary-button" style="margin-left: 1rem;">Explore Services</a>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- Footer -->
     <footer>
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-branding">
-            <a href="index.html" class="logo">
-              <div class="logo">
-                <span>CydexCode</span>
-              </div>
-            </a>
-            <p>
-              Join us in shaping the future of technology through
-              state-of-the-art AI solutions, advanced software engineering, and
-              transformative innovations.
-            </p>
-            <div class="social-links">
-              <a
-                href="https://www.linkedin.com/company/cydexcode"
-                target="_blank"
-                class="social-link"
-                ><i class="fab fa-linkedin"></i
-              ></a>
-              <a
-                href="https://www.youtube.com/@cydexcode"
-                target="_blank"
-                class="social-link"
-                ><i class="fab fa-youtube"></i
-              ></a>
-              <a
-                href="https://www.tiktok.com/@cydexcode"
-                target="_blank"
-                class="social-link"
-                ><i class="fab fa-tiktok"></i
-              ></a>
-              <a
-                href="https://medium.com/@cydexcode"
-                target="_blank"
-                class="social-link"
-                ><i class="fab fa-medium"></i
-              ></a>
-              <a
-                href="https://web.facebook.com/profile.php?id=61561125212890"
-                target="_blank"
-                class="social-link"
-                ><i class="fab fa-facebook"></i
-              ></a>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-branding">
+                    <a href="index.html" class="logo">
+                        <span>CydexCode</span>
+                    </a>
+                    <p>
+                        Join us in shaping the future of technology through
+                        state-of-the-art AI solutions, advanced software engineering, and
+                        transformative innovations.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/cydexcode" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.youtube.com/@cydexcode" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@cydexcode" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://medium.com/@cydexcode" target="_blank"><i class="fab fa-medium"></i></a>
+                        <a href="https://web.facebook.com/profile.php?id=61561125212890" target="_blank"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html">AI & Machine Learning</a></li>
+                        <li><a href="services.html">Software Development</a></li>
+                        <li><a href="services.html">Cloud Computing</a></li>
+                        <li><a href="services.html">DevOps & Automation</a></li>
+                        <li><a href="services.html">Data Analytics</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
             </div>
-          </div>
 
-          <div class="footer-links">
-            <h3>Services</h3>
-            <ul>
-              <li><a href="services.html">AI & Machine Learning</a></li>
-              <li><a href="services.html">Software Development</a></li>
-              <li><a href="services.html">Cloud Computing</a></li>
-              <li><a href="services.html">DevOps & Automation</a></li>
-              <li><a href="services.html">Data Analytics</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-links">
-            <h3>Company</h3>
-            <ul>
-              <li><a href="about.html">About Us</a></li>
-              <li><a href="#">Careers</a></li>
-              <!-- Blog removed -->
-              <li><a href="#">Case Studies</a></li>
-              <li><a href="contact.html">Contact</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-links">
-            <h3>Resources</h3>
-            <ul>
-              <li><a href="#">Documentation</a></li>
-              <li><a href="#">Support</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms of Service</a></li>
-              <li><a href="#">FAQ</a></li>
-            </ul>
-          </div>
+            <div class="copyright">
+                <p>&copy; 2025 CydexCode. All rights reserved.</p>
+            </div>
         </div>
-
-        <div class="copyright">
-          <p>&copy; 2025 CydexCode. All rights reserved.</p>
-        </div>
-      </div>
     </footer>
-    <script src="script.js"></script>
-  </body>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        const logoImg = document.getElementById('main-logo');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Theme switcher
+        const lightBtn = document.querySelector('.theme-btn.light');
+        const darkBtn = document.querySelector('.theme-btn.dark');
+        const html = document.documentElement;
+
+        function setLogoForTheme(theme) {
+            if (logoImg) {
+                if (theme === 'dark') {
+                    logoImg.src = 'Di.png';
+                } else {
+                    logoImg.src = 'D2icon.jpg';
+                }
+            }
+        }
+
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        html.classList.toggle('dark', savedTheme === 'dark');
+        setLogoForTheme(savedTheme);
+        updateThemeButtons(savedTheme);
+
+        lightBtn.addEventListener('click', () => {
+            html.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+            setLogoForTheme('light');
+            updateThemeButtons('light');
+        });
+
+        darkBtn.addEventListener('click', () => {
+            html.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+            setLogoForTheme('dark');
+            updateThemeButtons('dark');
+        });
+
+        function updateThemeButtons(theme) {
+            lightBtn.classList.toggle('active', theme === 'light');
+            darkBtn.classList.toggle('active', theme === 'dark');
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav') && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.textContent = '☰';
+            }
+        });
+    </script>
+</body>
 </html>

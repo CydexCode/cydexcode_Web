@@ -277,7 +277,7 @@
                 if (href.startsWith('#')) return; // let anchor behavior happen
                 if (a.target === '_blank' || a.hasAttribute('download')) return;
 
-                // Only intercept same-origin .html links or plain filenames (e.g., services.html)
+                // Only intercept same-origin links
                 try{
                     const url = new URL(href, location.href);
                     if (url.origin !== location.origin) return;
@@ -286,16 +286,30 @@
                     return;
                 }
 
-                if (href.match(/\.html($|\?)/i) || href === 'index.html'){
+                // Support clean URLs (e.g., /about, /services) and .html links
+                // Map clean URLs to .html files for AJAX loading
+                let pageHref = href;
+                if (!pageHref.endsWith('.html') && !pageHref.startsWith('#')) {
+                    // Remove trailing slash for root
+                    if (pageHref === '/' || pageHref === '') {
+                        pageHref = 'index.html';
+                    } else {
+                        // Remove leading slash if present
+                        pageHref = pageHref.replace(/^\//, '');
+                        pageHref = pageHref + '.html';
+                    }
+                }
+                if (pageHref.match(/\.html($|\?)/i)) {
                     e.preventDefault();
-                    loadPage(href, true);
+                    loadPage(pageHref, true);
                 }
             });
 
             // handle back/forward navigation
             window.addEventListener('popstate', (e) => {
-                let path = location.pathname.split('/').pop() || 'index';
-                // Add .html extension back for loading if needed
+                // Get the path after the domain, remove leading slash
+                let path = location.pathname.replace(/^\//, '');
+                // If root or empty, load index.html
                 if (path === '' || path === '/') {
                     path = 'index.html';
                 } else if (!path.endsWith('.html')) {
